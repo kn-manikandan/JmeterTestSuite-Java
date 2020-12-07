@@ -1,0 +1,3323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="2.6" jmeter="2.11 r1554548">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Csio Test Requests" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="server-name-app1" elementType="Argument">
+            <stringProp name="Argument.name">server-name-app1</stringProp>
+            <stringProp name="Argument.value">localhost</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="DB" elementType="Argument">
+            <stringProp name="Argument.name">DB</stringProp>
+            <stringProp name="Argument.value">ibsdb</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="projectHome" elementType="Argument">
+            <stringProp name="Argument.name">projectHome</stringProp>
+            <stringProp name="Argument.value">${__BeanShell(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="server-name-app2" elementType="Argument">
+            <stringProp name="Argument.name">server-name-app2</stringProp>
+            <stringProp name="Argument.value">localhost</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <JDBCDataSource guiclass="TestBeanGUI" testclass="JDBCDataSource" testname="JDBC Connection Configuration" enabled="true">
+        <boolProp name="autocommit">false</boolProp>
+        <stringProp name="checkQuery">Select 1</stringProp>
+        <stringProp name="connectionAge">5000</stringProp>
+        <stringProp name="dataSource">IBSDB</stringProp>
+        <stringProp name="dbUrl">jdbc:oracle:thin:@//${DB}:1521/ibs</stringProp>
+        <stringProp name="driver">oracle.jdbc.OracleDriver</stringProp>
+        <boolProp name="keepAlive">true</boolProp>
+        <stringProp name="password">c0c0nut</stringProp>
+        <stringProp name="poolMax">10</stringProp>
+        <stringProp name="timeout">10000</stringProp>
+        <stringProp name="transactionIsolation">DEFAULT</stringProp>
+        <stringProp name="trimInterval">60000</stringProp>
+        <stringProp name="username">ibs</stringProp>
+      </JDBCDataSource>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Get Configuration" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1425570125000</longProp>
+        <longProp name="ThreadGroup.end_time">1425570125000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Config Request" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server-name}</stringProp>
+          <stringProp name="HTTPSampler.port">8443</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/csio-service-web/configuration/</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <objProp>
+            <name></name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Delete Additional Interest" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">stopthread</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1425569452000</longProp>
+        <longProp name="ThreadGroup.end_time">1425569452000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Request Parameters. " enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="POLICYKEY" elementType="Argument">
+              <stringProp name="Argument.name">POLICYKEY</stringProp>
+              <stringProp name="Argument.value">4755P04</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">Modifiable - Policy key to delete from</stringProp>
+            </elementProp>
+            <elementProp name="REQUEST-TEMPLATE-FILENAME" elementType="Argument">
+              <stringProp name="Argument.name">REQUEST-TEMPLATE-FILENAME</stringProp>
+              <stringProp name="Argument.value">HomePolicyModRq_DeleteAdditionalInterest_template.xml</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="USERID" elementType="Argument">
+              <stringProp name="Argument.name">USERID</stringProp>
+              <stringProp name="Argument.value">212137557097493</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">Modifiable - objectid of the user to make the request as. </stringProp>
+            </elementProp>
+            <elementProp name="CHANGEDESC" elementType="Argument">
+              <stringProp name="Argument.name">CHANGEDESC</stringProp>
+              <stringProp name="Argument.value">Jmeter Automated Test mark</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">Modifiable - Change description in the XML</stringProp>
+            </elementProp>
+            <elementProp name="SBUID" elementType="Argument">
+              <stringProp name="Argument.name">SBUID</stringProp>
+              <stringProp name="Argument.value">23</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">Modifiable - Sbu Id</stringProp>
+            </elementProp>
+            <elementProp name="TRANSACTION-DATE" elementType="Argument">
+              <stringProp name="Argument.name">TRANSACTION-DATE</stringProp>
+              <stringProp name="Argument.value">2015-04-20T00:00:01</stringProp>
+              <stringProp name="Argument.desc">Target transaction effective date</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="AI-NAME" elementType="Argument">
+              <stringProp name="Argument.name">AI-NAME</stringProp>
+              <stringProp name="Argument.value">%s%</stringProp>
+              <stringProp name="Argument.desc">part of ai name in case multiples are on the policy</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Policy Lookup SQL" enabled="true">
+          <stringProp name="dataSource">IBSDB</stringProp>
+          <stringProp name="query">    select 
+    py.objectid py_id, py.vnumber py_vn, substr(pytr.vmajorchangeid||&apos;.&apos;||pytr.vminorchangeid,1, 10) trnx,
+    r.risknumber, rl.locationnumber, rl.addressid location_id, ct.formattedname_singleline, ip.objectid ip_id, 
+    ip.vnumber ip_vn, to_char(py.contracteffectivedate, &apos;YYYY-MM-DD&apos;) py_eff_date, 
+    to_char(py.contractexpirydate, &apos;YYYY-MM-DD&apos;) py_exp_dt, to_char(ip.veffectivedate, &apos;YYYY-MM-DD&apos;) ip_eff_dt
+    
+  from 
+    wwp_policy py 
+    join wwp_transaction pytr
+      on py.objectid = pytr.policyid and py.vnumber = pytr.policyvnumber
+    join wwp_risk r
+      on py.objectid = r.policyid and py.vnumber = r.policyvnumber and pytr.objectid = r.policytransactionid
+    join wwp_risklocation rl
+      on r.objectid = rl.riskid and r.vnumber = rl.riskvnumber
+    join wwp_insuranceitem it
+      on rl.objectid = it.risklocationid and rl.vnumber = it.risklocationvnumber
+    join wwl_insiteminvolvedparty itip
+      on it.objectid = itip.insitemid and it.vnumber = itip.insitemvnumber
+    join wwp_involvedparty ip
+     on ip.objectid = itip.involvedpartyid and ip.vnumber = itip.involvedpartyvnumber
+    join wwz_contact ct
+      on ct.objectid = ip.contactid and ct.vnumber = ip.contactvnumber
+    join wwp_additionalinterest ai
+      on ip.objectid = ai.involvedpartyid and ip.vnumber = ai.involvedpartyvnumber
+  where 
+    py.policykey = ?
+    and ip.vtemplatestatus = 0
+    and ip.vrecordstatus &lt;&gt; 13
+    --and ct.formattedname_singleline = ?
+  order by
+    trnx, r.risknumber, rl.locationnumber</stringProp>
+          <stringProp name="queryArguments">${POLICYKEY}</stringProp>
+          <stringProp name="queryArgumentsTypes">VARCHAR</stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="queryType">Prepared Select Statement</stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="variableNames">PYID, PYVNUM, TRXN, RISKNUM, LOCNUM, LOCID, NAME, IPID, IPVNUM, PYEFFDT, PYEXPDT,  IPEFFDT</stringProp>
+        </JDBCSampler>
+        <hashTree/>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Fixed IDs SQL" enabled="true">
+          <stringProp name="dataSource">IBSDB</stringProp>
+          <stringProp name="query">select ibs_csio.get_csio_fixed_id(2, ?, ?) ipfixedid, ibs_csio.get_csio_fixed_id(5, ?, ?) locfixedid from dual
+</stringProp>
+          <stringProp name="queryArguments">${IPID_1}, ${PYID_1}, ${LOCID_1}, ${PYID_1}</stringProp>
+          <stringProp name="queryArgumentsTypes">VARCHAR, VARCHAR, VARCHAR, VARCHAR</stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="queryType">Prepared Select Statement</stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="variableNames">IP_FIXEDID, LOC_FIXEDID</stringProp>
+        </JDBCSampler>
+        <hashTree/>
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="Generate Authorization Header" enabled="true">
+          <stringProp name="BeanShellSampler.query">
+try {
+
+String authorization=net.mccg.third.party.authorization.AuthGenerator.getAuthorizationHeaderValue(vars.get(&quot;USERID&quot;),&quot;23&quot;,&quot;HIJ6U7DK&quot;,&quot;O2PFR5H3&quot;);
+vars.put(&quot;authorization&quot;,authorization);
+
+}
+catch (Excpetion e) {
+	log.warn(&quot;Error generating authorization header : &quot; + e.getmessage());
+}
+</stringProp>
+          <stringProp name="BeanShellSampler.filename"></stringProp>
+          <stringProp name="BeanShellSampler.parameters"></stringProp>
+          <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+        </BeanShellSampler>
+        <hashTree/>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">mccg-user</stringProp>
+              <stringProp name="Header.value">${USERID}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">mccg-sbu</stringProp>
+              <stringProp name="Header.value">${SBUID}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Authorization</stringProp>
+              <stringProp name="Header.value">${authorization}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Content-Type</stringProp>
+              <stringProp name="Header.value">application/xml</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">sbuid</stringProp>
+              <stringProp name="Header.value">23</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Get Policy Checksum" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="sbuid" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${SBUID}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">sbuid</stringProp>
+              </elementProp>
+              <elementProp name="editmode" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">modify</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">editmode</stringProp>
+              </elementProp>
+              <elementProp name="languagekey" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">en</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">languagekey</stringProp>
+              </elementProp>
+              <elementProp name="permission" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">4</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">permission</stringProp>
+              </elementProp>
+              <elementProp name="userid" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${USERID}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">userid</stringProp>
+              </elementProp>
+              <elementProp name="policykey" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${POLICYKEY}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">policykey</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server-name}</stringProp>
+          <stringProp name="HTTPSampler.port">8443</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+          <stringProp name="HTTPSampler.path">persistence-service-web/checksum</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">POLICYCHECKSUM</stringProp>
+            <stringProp name="RegexExtractor.regex">.*</stringProp>
+            <stringProp name="RegexExtractor.template">$0$</stringProp>
+            <stringProp name="RegexExtractor.default"></stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Delete Request" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&#xd;
+The body is replaced with a modified version of the template loaded by the preprocessor. &#xd;
+&#xd;
+The template is defined by the REQUEST-TEMPLATE-FILENAME property. </stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server-name}</stringProp>
+          <stringProp name="HTTPSampler.port">8443</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+          <stringProp name="HTTPSampler.path">csio-service-web/csio/</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="XML Request Template PreProcessor" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters">REQUEST-TEMPLATE-FILENAME</stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.io.*;
+import java.util.*;
+import org.apache.jmeter.config.*;
+
+try {
+
+   String templateName = vars.get(&quot;REQUEST-TEMPLATE-FILENAME&quot;);
+   String projectHome = vars.get(&quot;projectHome&quot;);
+   String filename = projectHome + File.separator + templateName;
+   log.info(&quot;Reading request xml : &quot; + filename);
+   File requestFile = new File(filename);
+   FileInputStream fileinputstream = new FileInputStream(filename);
+		
+   InputStreamReader inputStreamReader = new InputStreamReader(fileinputstream, java.nio.charset.Charset.forName(&quot;UTF-8&quot;)); 
+
+   BufferedReader xmlReader = new BufferedReader(inputStreamReader);
+
+   StringBuffer xmlData = new StringBuffer();
+ 
+   String line;
+   while( (line = xmlReader.readLine()) != null) { xmlData.append(line).append(&apos;\n&apos;); }
+
+   String requestSubst = xmlData.toString();
+   Iterator iter = vars.getIterator();
+
+   // loop thru all of the varables and replace any matching tags. This is as generic as it can be. 
+   while(iter.hasNext()) {
+	 Map.Entry currentEntry = iter.next();
+	 if(currentEntry.getKey() != null &amp;&amp; currentEntry.getValue() != null) {
+	    String tag = &quot;#mccg:&quot;+currentEntry.getKey().toUpperCase()+&quot;#&quot;; // Create a tag out of the key
+	    String value = currentEntry.getValue().toString();
+	    requestSubst = requestSubst.replaceAll(tag, value);
+	 }
+   }
+ 
+// after all tag replacements have been done, put the result in the body argument
+   sampler.getArguments().getArgument(0).setValue(requestSubst);
+   
+}
+catch (Exception e) {
+log.info(&quot;Exception : &quot; + e.getMessage());	
+
+
+}
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="PDR Id Extractor" enabled="true">
+            <stringProp name="XPathExtractor.default"></stringProp>
+            <stringProp name="XPathExtractor.refname">PDRID</stringProp>
+            <stringProp name="XPathExtractor.xpathQuery">//OtherId[text()] </stringProp>
+            <boolProp name="XPathExtractor.validate">false</boolProp>
+            <boolProp name="XPathExtractor.tolerant">false</boolProp>
+            <boolProp name="XPathExtractor.namespace">false</boolProp>
+          </XPathExtractor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Upload File 1 Request" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server-name}</stringProp>
+          <stringProp name="HTTPSampler.port">8443</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+          <stringProp name="HTTPSampler.path">/csio-service-web/pdr/pc/${PDRID}/ratingsummary</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">true</boolProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient3.1</stringProp>
+          <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
+            <collectionProp name="HTTPFileArgs.files">
+              <elementProp name="${projectHome}\ratingsummary.pdf" elementType="HTTPFileArg">
+                <stringProp name="File.path">${projectHome}\ratingsummary.pdf</stringProp>
+                <stringProp name="File.paramname">file</stringProp>
+                <stringProp name="File.mimetype">application/pdf</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Add Multipart heard" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">multipart/form-data</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Upload File 2 Request" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server-name}</stringProp>
+          <stringProp name="HTTPSampler.port">8443</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+          <stringProp name="HTTPSampler.path">/csio-service-web/pdr/pc/${PDRID}/summary</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">true</boolProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient3.1</stringProp>
+          <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
+            <collectionProp name="HTTPFileArgs.files">
+              <elementProp name="${projectHome}\summary.pdf" elementType="HTTPFileArg">
+                <stringProp name="File.path">${projectHome}\summary.pdf</stringProp>
+                <stringProp name="File.paramname">file</stringProp>
+                <stringProp name="File.mimetype">application/pdf</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Add multipart header" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">multipart/form-data</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+          <boolProp name="displayJMeterProperties">false</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <objProp>
+            <name></name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Delete Additional Interest (Single request - Synchronous requests only)" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">stopthread</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1425569452000</longProp>
+        <longProp name="ThreadGroup.end_time">1425569452000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <stringProp name="TestPlan.comments">Currently this code writes out the transformed template before it sends it. It is not thread safe.</stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Request Parameters. " enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="POLICYKEY" elementType="Argument">
+              <stringProp name="Argument.name">POLICYKEY</stringProp>
+              <stringProp name="Argument.value">2303P13</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">Modifiable - Policy key to delete from</stringProp>
+            </elementProp>
+            <elementProp name="REQUEST-TEMPLATE-FILENAME" elementType="Argument">
+              <stringProp name="Argument.name">REQUEST-TEMPLATE-FILENAME</stringProp>
+              <stringProp name="Argument.value">HomePolicyModRq_DeleteAdditionalInterest_template.xml</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="USERID" elementType="Argument">
+              <stringProp name="Argument.name">USERID</stringProp>
+              <stringProp name="Argument.value">212137557097493</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">Modifiable - objectid of the user to make the request as. </stringProp>
+            </elementProp>
+            <elementProp name="CHANGEDESC" elementType="Argument">
+              <stringProp name="Argument.name">CHANGEDESC</stringProp>
+              <stringProp name="Argument.value">Jmeter Automated Test mark</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">Modifiable - Change description in the XML</stringProp>
+            </elementProp>
+            <elementProp name="SBUID" elementType="Argument">
+              <stringProp name="Argument.name">SBUID</stringProp>
+              <stringProp name="Argument.value">23</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">Modifiable - Sbu Id</stringProp>
+            </elementProp>
+            <elementProp name="TRANSACTION-DATE" elementType="Argument">
+              <stringProp name="Argument.name">TRANSACTION-DATE</stringProp>
+              <stringProp name="Argument.value">2015-03-20T00:00:01</stringProp>
+              <stringProp name="Argument.desc">Target transaction effective date</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="AI-NAME" elementType="Argument">
+              <stringProp name="Argument.name">AI-NAME</stringProp>
+              <stringProp name="Argument.value">%s%</stringProp>
+              <stringProp name="Argument.desc">part of ai name in case multiples are on the policy</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Policy Lookup SQL" enabled="true">
+          <stringProp name="dataSource">IBSDB</stringProp>
+          <stringProp name="query">    select 
+    py.objectid py_id, py.vnumber py_vn, substr(pytr.vmajorchangeid||&apos;.&apos;||pytr.vminorchangeid,1, 10) trnx,
+    r.risknumber, rl.locationnumber, rl.addressid location_id, ct.formattedname_singleline, ip.objectid ip_id, 
+    ip.vnumber ip_vn, to_char(py.contracteffectivedate, &apos;YYYY-MM-DD&apos;) py_eff_date, 
+    to_char(py.contractexpirydate, &apos;YYYY-MM-DD&apos;) py_exp_dt, to_char(ip.veffectivedate, &apos;YYYY-MM-DD&apos;) ip_eff_dt
+    
+  from 
+    wwp_policy py 
+    join wwp_transaction pytr
+      on py.objectid = pytr.policyid and py.vnumber = pytr.policyvnumber
+    join wwp_risk r
+      on py.objectid = r.policyid and py.vnumber = r.policyvnumber and pytr.objectid = r.policytransactionid
+    join wwp_risklocation rl
+      on r.objectid = rl.riskid and r.vnumber = rl.riskvnumber
+    join wwp_insuranceitem it
+      on rl.objectid = it.risklocationid and rl.vnumber = it.risklocationvnumber
+    join wwl_insiteminvolvedparty itip
+      on it.objectid = itip.insitemid and it.vnumber = itip.insitemvnumber
+    join wwp_involvedparty ip
+     on ip.objectid = itip.involvedpartyid and ip.vnumber = itip.involvedpartyvnumber
+    join wwz_contact ct
+      on ct.objectid = ip.contactid and ct.vnumber = ip.contactvnumber
+    join wwp_additionalinterest ai
+      on ip.objectid = ai.involvedpartyid and ip.vnumber = ai.involvedpartyvnumber
+  where 
+    py.policykey = ?
+    and ip.vtemplatestatus = 0
+    and ip.vrecordstatus &lt;&gt; 13
+    --and ct.formattedname_singleline = ?
+  order by
+    trnx, r.risknumber, rl.locationnumber</stringProp>
+          <stringProp name="queryArguments">${POLICYKEY}</stringProp>
+          <stringProp name="queryArgumentsTypes">VARCHAR</stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="queryType">Prepared Select Statement</stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="variableNames">PYID, PYVNUM, TRXN, RISKNUM, LOCNUM, LOCID, NAME, IPID, IPVNUM, PYEFFDT, PYEXPDT,  IPEFFDT</stringProp>
+        </JDBCSampler>
+        <hashTree/>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Fixed IDs SQL" enabled="true">
+          <stringProp name="dataSource">IBSDB</stringProp>
+          <stringProp name="query">select ibs_csio.get_csio_fixed_id(2, ?, ?) ipfixedid, ibs_csio.get_csio_fixed_id(5, ?, ?) locfixedid from dual
+</stringProp>
+          <stringProp name="queryArguments">${IPID_1}, ${PYID_1}, ${LOCID_1}, ${PYID_1}</stringProp>
+          <stringProp name="queryArgumentsTypes">VARCHAR, VARCHAR, VARCHAR, VARCHAR</stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="queryType">Prepared Select Statement</stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="variableNames">IP_FIXEDID, LOC_FIXEDID</stringProp>
+        </JDBCSampler>
+        <hashTree/>
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="Generate Authorization Header" enabled="true">
+          <stringProp name="BeanShellSampler.query">
+try {
+
+String authorization=net.mccg.third.party.authorization.AuthGenerator.getAuthorizationHeaderValue(vars.get(&quot;USERID&quot;),&quot;23&quot;,&quot;HIJ6U7DK&quot;,&quot;O2PFR5H3&quot;);
+vars.put(&quot;authorization&quot;,authorization);
+
+}
+catch (Excpetion e) {
+	log.warn(&quot;Error generating authorization header : &quot; + e.getmessage());
+}
+</stringProp>
+          <stringProp name="BeanShellSampler.filename"></stringProp>
+          <stringProp name="BeanShellSampler.parameters"></stringProp>
+          <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+        </BeanShellSampler>
+        <hashTree/>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">mccg-user</stringProp>
+              <stringProp name="Header.value">${USERID}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">mccg-sbu</stringProp>
+              <stringProp name="Header.value">${SBUID}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Authorization</stringProp>
+              <stringProp name="Header.value">${authorization}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Content-Type</stringProp>
+              <stringProp name="Header.value">application/xml</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">sbuid</stringProp>
+              <stringProp name="Header.value">23</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Get Policy Checksum" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="sbuid" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${SBUID}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">sbuid</stringProp>
+              </elementProp>
+              <elementProp name="editmode" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">modify</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">editmode</stringProp>
+              </elementProp>
+              <elementProp name="languagekey" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">en</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">languagekey</stringProp>
+              </elementProp>
+              <elementProp name="permission" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">4</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">permission</stringProp>
+              </elementProp>
+              <elementProp name="userid" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${USERID}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">userid</stringProp>
+              </elementProp>
+              <elementProp name="policykey" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${POLICYKEY}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">policykey</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server-name}</stringProp>
+          <stringProp name="HTTPSampler.port">8443</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+          <stringProp name="HTTPSampler.path">persistence-service-web/checksum</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">POLICYCHECKSUM</stringProp>
+            <stringProp name="RegexExtractor.regex">.*</stringProp>
+            <stringProp name="RegexExtractor.template">$0$</stringProp>
+            <stringProp name="RegexExtractor.default"></stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Delete Request" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server-name}</stringProp>
+          <stringProp name="HTTPSampler.port">8443</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+          <stringProp name="HTTPSampler.path">csio-service-web/csio/pc/</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">true</boolProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient3.1</stringProp>
+          <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
+            <collectionProp name="HTTPFileArgs.files">
+              <elementProp name="${projectHome}\ratingsummary.pdf" elementType="HTTPFileArg">
+                <stringProp name="File.path">${projectHome}\ratingsummary.pdf</stringProp>
+                <stringProp name="File.paramname">ratingsummary.pdf</stringProp>
+                <stringProp name="File.mimetype">application/pdf</stringProp>
+              </elementProp>
+              <elementProp name="${projectHome}\summary.pdf" elementType="HTTPFileArg">
+                <stringProp name="File.path">${projectHome}\summary.pdf</stringProp>
+                <stringProp name="File.paramname">summary.pdf</stringProp>
+                <stringProp name="File.mimetype">application/pdf</stringProp>
+              </elementProp>
+              <elementProp name="${TEST-TEMP-FILE}" elementType="HTTPFileArg">
+                <stringProp name="File.path">${TEST-TEMP-FILE}</stringProp>
+                <stringProp name="File.paramname">csio</stringProp>
+                <stringProp name="File.mimetype">application/xml</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Add Multipart heard" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">multipart/form-data</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="XML Request Template PreProcessor" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters">REQUEST-TEMPLATE-FILENAME</stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.io.*;
+import java.util.*;
+import org.apache.jmeter.config.*;
+
+try {
+
+   String templateName = vars.get(&quot;REQUEST-TEMPLATE-FILENAME&quot;);
+   String projectHome = vars.get(&quot;projectHome&quot;);
+   String filename = projectHome + File.separator + templateName;
+   log.info(&quot;Reading request xml : &quot; + filename);
+   File requestFile = new File(filename);
+   FileInputStream fileinputstream = new FileInputStream(filename);
+		
+   InputStreamReader inputStreamReader = new InputStreamReader(fileinputstream, java.nio.charset.Charset.forName(&quot;UTF-8&quot;)); 
+
+   BufferedReader xmlReader = new BufferedReader(inputStreamReader);
+
+   StringBuffer xmlData = new StringBuffer();
+ 
+   String line;
+   while( (line = xmlReader.readLine()) != null) { xmlData.append(line).append(&apos;\n&apos;); }
+
+   String requestSubst = xmlData.toString();
+   Iterator iter = vars.getIterator();
+
+   // loop thru all of the varables and replace any matching tags. This is as generic as it can be. 
+   while(iter.hasNext()) {
+	 Map.Entry currentEntry = iter.next();
+	 if(currentEntry.getKey() != null &amp;&amp; currentEntry.getValue() != null) {
+	    String tag = &quot;#mccg:&quot;+currentEntry.getKey().toUpperCase()+&quot;#&quot;; // Create a tag out of the key
+	    String value = currentEntry.getValue().toString();
+	    requestSubst = requestSubst.replaceAll(tag, value);
+	 }
+   }
+ 
+   // after all tag replacements have been done, put the result in the body argument
+   
+String tempFile = projectHome + File.separator + &quot;tmp&quot; + templateName;
+File file = new File(tempFile);
+FileWriter fw = new FileWriter(file);
+fw.write(requestSubst);
+fw.flush();
+fw.close();
+
+vars.put(&quot;TEST-TEMP-FILE&quot;, tempFile);
+   
+}
+catch (Exception e) {
+log.info(&quot;Exception : &quot; + e.getMessage());	
+
+
+}
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+        </hashTree>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+          <boolProp name="displayJMeterProperties">false</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <objProp>
+            <name></name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Delete Leinholder on Auto Policy (Single request - Synchronous requests only)" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">stopthread</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1425569452000</longProp>
+        <longProp name="ThreadGroup.end_time">1425569452000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <stringProp name="TestPlan.comments">Currently this code writes out the transformed template before it sends it. It is not thread safe.</stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Request Parameters. " enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="POLICYKEY" elementType="Argument">
+              <stringProp name="Argument.name">POLICYKEY</stringProp>
+              <stringProp name="Argument.value">1971A01</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">Modifiable - Policy key to delete from</stringProp>
+            </elementProp>
+            <elementProp name="REQUEST-TEMPLATE-FILENAME" elementType="Argument">
+              <stringProp name="Argument.name">REQUEST-TEMPLATE-FILENAME</stringProp>
+              <stringProp name="Argument.value">AutoPolicyModRq_DeleteAdditionalInterest_template.xml</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="USERID" elementType="Argument">
+              <stringProp name="Argument.name">USERID</stringProp>
+              <stringProp name="Argument.value">212137557097493</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">Modifiable - objectid of the user to make the request as. </stringProp>
+            </elementProp>
+            <elementProp name="CHANGEDESC" elementType="Argument">
+              <stringProp name="Argument.name">CHANGEDESC</stringProp>
+              <stringProp name="Argument.value">Jmeter Automated Test mark</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">Modifiable - Change description in the XML</stringProp>
+            </elementProp>
+            <elementProp name="SBUID" elementType="Argument">
+              <stringProp name="Argument.name">SBUID</stringProp>
+              <stringProp name="Argument.value">23</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">Modifiable - Sbu Id</stringProp>
+            </elementProp>
+            <elementProp name="TRANSACTION-DATE" elementType="Argument">
+              <stringProp name="Argument.name">TRANSACTION-DATE</stringProp>
+              <stringProp name="Argument.value">2015-05-20T00:00:01</stringProp>
+              <stringProp name="Argument.desc">Target transaction effective date</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="AI-NAME" elementType="Argument">
+              <stringProp name="Argument.name">AI-NAME</stringProp>
+              <stringProp name="Argument.value">%s%</stringProp>
+              <stringProp name="Argument.desc">part of ai name in case multiples are on the policy</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Policy Lookup SQL" enabled="true">
+          <stringProp name="dataSource">IBSDB</stringProp>
+          <stringProp name="query">    select 
+    py.objectid py_id, py.vnumber py_vn, substr(pytr.vmajorchangeid||&apos;.&apos;||pytr.vminorchangeid,1, 10) trnx,
+    r.risknumber, rl.locationnumber, rl.addressid location_id, ct.formattedname_singleline, ip.objectid ip_id, 
+    ip.vnumber ip_vn, to_char(py.contracteffectivedate, &apos;YYYY-MM-DD&apos;) py_eff_date, 
+    to_char(py.contractexpirydate, &apos;YYYY-MM-DD&apos;) py_exp_dt, to_char(ip.veffectivedate, &apos;YYYY-MM-DD&apos;) ip_eff_dt
+    
+  from 
+    wwp_policy py 
+    join wwp_transaction pytr
+      on py.objectid = pytr.policyid and py.vnumber = pytr.policyvnumber
+    join wwp_risk r
+      on py.objectid = r.policyid and py.vnumber = r.policyvnumber and pytr.objectid = r.policytransactionid
+    join wwp_risklocation rl
+      on r.objectid = rl.riskid and r.vnumber = rl.riskvnumber
+    join wwp_insuranceitem it
+      on rl.objectid = it.risklocationid and rl.vnumber = it.risklocationvnumber
+    join wwl_insiteminvolvedparty itip
+      on it.objectid = itip.insitemid and it.vnumber = itip.insitemvnumber
+    join wwp_involvedparty ip
+     on ip.objectid = itip.involvedpartyid and ip.vnumber = itip.involvedpartyvnumber
+    join wwz_contact ct
+      on ct.objectid = ip.contactid and ct.vnumber = ip.contactvnumber
+    join wwp_additionalinterest ai
+      on ip.objectid = ai.involvedpartyid and ip.vnumber = ai.involvedpartyvnumber
+  where 
+    py.policykey = ?
+    and ip.vtemplatestatus = 0
+    and ip.vrecordstatus &lt;&gt; 13
+    --and ct.formattedname_singleline = ?
+  order by
+    trnx, r.risknumber, rl.locationnumber</stringProp>
+          <stringProp name="queryArguments">${POLICYKEY}</stringProp>
+          <stringProp name="queryArgumentsTypes">VARCHAR</stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="queryType">Prepared Select Statement</stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="variableNames">PYID, PYVNUM, TRXN, RISKNUM, LOCNUM, LOCID, NAME, IPID, IPVNUM, PYEFFDT, PYEXPDT,  IPEFFDT</stringProp>
+        </JDBCSampler>
+        <hashTree/>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Fixed IDs SQL" enabled="true">
+          <stringProp name="dataSource">IBSDB</stringProp>
+          <stringProp name="query">select ibs_csio.get_csio_fixed_id(2, ?, ?) ipfixedid, ibs_csio.get_csio_fixed_id(5, ?, ?) locfixedid from dual
+</stringProp>
+          <stringProp name="queryArguments">${IPID_1}, ${PYID_1}, ${LOCID_1}, ${PYID_1}</stringProp>
+          <stringProp name="queryArgumentsTypes">VARCHAR, VARCHAR, VARCHAR, VARCHAR</stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="queryType">Prepared Select Statement</stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="variableNames">IP_FIXEDID, LOC_FIXEDID</stringProp>
+        </JDBCSampler>
+        <hashTree/>
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="Generate Authorization Header" enabled="true">
+          <stringProp name="BeanShellSampler.query">
+try {
+
+String authorization=net.mccg.third.party.authorization.AuthGenerator.getAuthorizationHeaderValue(vars.get(&quot;USERID&quot;),&quot;23&quot;,&quot;HIJ6U7DK&quot;,&quot;O2PFR5H3&quot;);
+vars.put(&quot;authorization&quot;,authorization);
+
+}
+catch (Excpetion e) {
+	log.warn(&quot;Error generating authorization header : &quot; + e.getmessage());
+}
+</stringProp>
+          <stringProp name="BeanShellSampler.filename"></stringProp>
+          <stringProp name="BeanShellSampler.parameters"></stringProp>
+          <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+        </BeanShellSampler>
+        <hashTree/>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">mccg-user</stringProp>
+              <stringProp name="Header.value">${USERID}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">mccg-sbu</stringProp>
+              <stringProp name="Header.value">${SBUID}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Authorization</stringProp>
+              <stringProp name="Header.value">${authorization}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Content-Type</stringProp>
+              <stringProp name="Header.value">application/xml</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">sbuid</stringProp>
+              <stringProp name="Header.value">23</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Get Policy Checksum" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="sbuid" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${SBUID}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">sbuid</stringProp>
+              </elementProp>
+              <elementProp name="editmode" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">modify</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">editmode</stringProp>
+              </elementProp>
+              <elementProp name="languagekey" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">en</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">languagekey</stringProp>
+              </elementProp>
+              <elementProp name="permission" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">4</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">permission</stringProp>
+              </elementProp>
+              <elementProp name="userid" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${USERID}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">userid</stringProp>
+              </elementProp>
+              <elementProp name="policykey" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${POLICYKEY}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">policykey</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server-name-app1}</stringProp>
+          <stringProp name="HTTPSampler.port">8443</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+          <stringProp name="HTTPSampler.path">persistence-service-web/checksum</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">POLICYCHECKSUM</stringProp>
+            <stringProp name="RegexExtractor.regex">.*</stringProp>
+            <stringProp name="RegexExtractor.template">$0$</stringProp>
+            <stringProp name="RegexExtractor.default"></stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Delete Request" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server-name-app1}</stringProp>
+          <stringProp name="HTTPSampler.port">8443</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+          <stringProp name="HTTPSampler.path">csio-service-web/csio/pc/</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">true</boolProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient3.1</stringProp>
+          <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
+            <collectionProp name="HTTPFileArgs.files">
+              <elementProp name="${projectHome}\ratingsummary.pdf" elementType="HTTPFileArg">
+                <stringProp name="File.path">${projectHome}\ratingsummary.pdf</stringProp>
+                <stringProp name="File.paramname">ratingsummary.pdf</stringProp>
+                <stringProp name="File.mimetype">application/pdf</stringProp>
+              </elementProp>
+              <elementProp name="${projectHome}\summary.pdf" elementType="HTTPFileArg">
+                <stringProp name="File.path">${projectHome}\summary.pdf</stringProp>
+                <stringProp name="File.paramname">summary.pdf</stringProp>
+                <stringProp name="File.mimetype">application/pdf</stringProp>
+              </elementProp>
+              <elementProp name="${TEST-TEMP-FILE}" elementType="HTTPFileArg">
+                <stringProp name="File.path">${TEST-TEMP-FILE}</stringProp>
+                <stringProp name="File.paramname">csio</stringProp>
+                <stringProp name="File.mimetype">application/xml</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Add Multipart heard" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">multipart/form-data</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">checksum</stringProp>
+                <stringProp name="Header.value">${POLICYCHECKSUM}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="XML Request Template PreProcessor" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters">REQUEST-TEMPLATE-FILENAME</stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.io.*;
+import java.util.*;
+import org.apache.jmeter.config.*;
+
+try {
+
+   String templateName = vars.get(&quot;REQUEST-TEMPLATE-FILENAME&quot;);
+   String projectHome = vars.get(&quot;projectHome&quot;);
+   String filename = projectHome + File.separator + templateName;
+   log.info(&quot;Reading request xml : &quot; + filename);
+   File requestFile = new File(filename);
+   FileInputStream fileinputstream = new FileInputStream(filename);
+		
+   InputStreamReader inputStreamReader = new InputStreamReader(fileinputstream, java.nio.charset.Charset.forName(&quot;UTF-8&quot;)); 
+
+   BufferedReader xmlReader = new BufferedReader(inputStreamReader);
+
+   StringBuffer xmlData = new StringBuffer();
+ 
+   String line;
+   while( (line = xmlReader.readLine()) != null) { xmlData.append(line).append(&apos;\n&apos;); }
+
+   String requestSubst = xmlData.toString();
+   Iterator iter = vars.getIterator();
+
+   // loop thru all of the varables and replace any matching tags. This is as generic as it can be. 
+   while(iter.hasNext()) {
+	 Map.Entry currentEntry = iter.next();
+	 if(currentEntry.getKey() != null &amp;&amp; currentEntry.getValue() != null) {
+	 	
+	    String tag = &quot;#mccg:&quot;+currentEntry.getKey().toUpperCase()+&quot;#&quot;; // Create a tag out of the key
+	    log.info(tag);
+	    String value = currentEntry.getValue().toString();
+	    requestSubst = requestSubst.replaceAll(tag, value);
+	 }
+   }
+ 
+   // after all tag replacements have been done, put the result in the body argument
+   
+String tempFile = projectHome + File.separator + &quot;tmp&quot; + templateName;
+File file = new File(tempFile);
+FileWriter fw = new FileWriter(file);
+fw.write(requestSubst);
+fw.flush();
+fw.close();
+
+vars.put(&quot;TEST-TEMP-FILE&quot;, tempFile);
+   
+}
+catch (Exception e) {
+log.info(&quot;Exception : &quot; + e.getMessage());	
+
+
+}
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+        </hashTree>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+          <boolProp name="displayJMeterProperties">false</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <objProp>
+            <name></name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Add Additional Interest (Single request - Synchronous requests only)" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">stopthread</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1425569452000</longProp>
+        <longProp name="ThreadGroup.end_time">1425569452000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <stringProp name="TestPlan.comments">Currently this code writes out the transformed template before it sends it. It is not thread safe.</stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Request Parameters. " enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="POLICYKEY" elementType="Argument">
+              <stringProp name="Argument.name">POLICYKEY</stringProp>
+              <stringProp name="Argument.value">4076F01</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">Modifiable - Policy key to add to</stringProp>
+            </elementProp>
+            <elementProp name="REQUEST-TEMPLATE-FILENAME" elementType="Argument">
+              <stringProp name="Argument.name">REQUEST-TEMPLATE-FILENAME</stringProp>
+              <stringProp name="Argument.value">HomePolicyModRq_AddAdditionalInterest_template.xml</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="USERID" elementType="Argument">
+              <stringProp name="Argument.name">USERID</stringProp>
+              <stringProp name="Argument.value">212137557097493</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">Modifiable - objectid of the user to make the request as. </stringProp>
+            </elementProp>
+            <elementProp name="CHANGEDESC" elementType="Argument">
+              <stringProp name="Argument.name">CHANGEDESC</stringProp>
+              <stringProp name="Argument.value">Jmeter Automated Test mark</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">Modifiable - Change description in the XML</stringProp>
+            </elementProp>
+            <elementProp name="SBUID" elementType="Argument">
+              <stringProp name="Argument.name">SBUID</stringProp>
+              <stringProp name="Argument.value">23</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">Modifiable - Sbu Id</stringProp>
+            </elementProp>
+            <elementProp name="TRANSACTION-DATE" elementType="Argument">
+              <stringProp name="Argument.name">TRANSACTION-DATE</stringProp>
+              <stringProp name="Argument.value">2007-04-20T00:00:01</stringProp>
+              <stringProp name="Argument.desc">Target transaction effective date</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Involved Party Fields" enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="IP_NAME" elementType="Argument">
+              <stringProp name="Argument.name">IP_NAME</stringProp>
+              <stringProp name="Argument.value">Homer Simpson</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="IP_ADDRESS" elementType="Argument">
+              <stringProp name="Argument.name">IP_ADDRESS</stringProp>
+              <stringProp name="Argument.value">123 Richmond Street, London, Ontario, N6G 4K9</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Policy Lookup SQL" enabled="true">
+          <stringProp name="dataSource">IBSDB</stringProp>
+          <stringProp name="query">    select 
+    py.objectid py_id, py.vnumber py_vn, substr(pytr.vmajorchangeid||&apos;.&apos;||pytr.vminorchangeid,1, 10) trnx,
+    r.risknumber, rl.locationnumber, rl.addressid location_id, ct.formattedname_singleline, ip.objectid ip_id, 
+    ip.vnumber ip_vn, to_char(py.contracteffectivedate, &apos;YYYY-MM-DD&apos;) py_eff_date, 
+    to_char(py.contractexpirydate, &apos;YYYY-MM-DD&apos;) py_exp_dt, to_char(ip.veffectivedate, &apos;YYYY-MM-DD&apos;) ip_eff_dt, it.objectid as it_id
+    
+  from 
+    wwp_policy py 
+    join wwp_transaction pytr
+      on py.objectid = pytr.policyid and py.vnumber = pytr.policyvnumber
+    join wwp_risk r
+      on py.objectid = r.policyid and py.vnumber = r.policyvnumber and pytr.objectid = r.policytransactionid
+    join wwp_risklocation rl
+      on r.objectid = rl.riskid and r.vnumber = rl.riskvnumber
+    join wwp_insuranceitem it
+      on rl.objectid = it.risklocationid and rl.vnumber = it.risklocationvnumber
+    join wwl_insiteminvolvedparty itip
+      on it.objectid = itip.insitemid and it.vnumber = itip.insitemvnumber
+    join wwp_involvedparty ip
+     on ip.objectid = itip.involvedpartyid and ip.vnumber = itip.involvedpartyvnumber
+    join wwz_contact ct
+      on ct.objectid = ip.contactid and ct.vnumber = ip.contactvnumber
+    join wwp_additionalinterest ai
+      on ip.objectid = ai.involvedpartyid and ip.vnumber = ai.involvedpartyvnumber
+  where 
+    py.policykey = ?
+    and ip.vtemplatestatus = 0
+    and ip.vrecordstatus &lt;&gt; 13
+    --and ct.formattedname_singleline = ?
+  order by
+    trnx, r.risknumber, rl.locationnumber</stringProp>
+          <stringProp name="queryArguments">${POLICYKEY}</stringProp>
+          <stringProp name="queryArgumentsTypes">VARCHAR</stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="queryType">Prepared Select Statement</stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="variableNames">PYID, PYVNUM, TRXN, RISKNUM, LOCNUM, LOCID, NAME, IPID, IPVNUM, PYEFFDT, PYEXPDT,  IPEFFDT, ITID</stringProp>
+        </JDBCSampler>
+        <hashTree/>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Fixed Location IDs SQL" enabled="true">
+          <stringProp name="dataSource">IBSDB</stringProp>
+          <stringProp name="query">select  ibs_csio.get_csio_fixed_id(5, ?, ?) locfixedid from dual
+</stringProp>
+          <stringProp name="queryArguments">${LOCID_1}, ${PYID_1}</stringProp>
+          <stringProp name="queryArgumentsTypes">VARCHAR, VARCHAR</stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="queryType">Prepared Select Statement</stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="variableNames">IP_FIXEDID</stringProp>
+        </JDBCSampler>
+        <hashTree/>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Fixed Item IDs SQL" enabled="true">
+          <stringProp name="dataSource">IBSDB</stringProp>
+          <stringProp name="query">select  ibs_csio.get_csio_fixed_id(1, ?, ?) itfixedid from dual
+</stringProp>
+          <stringProp name="queryArguments">${ITID_1}, ${PYID_1}</stringProp>
+          <stringProp name="queryArgumentsTypes">VARCHAR, VARCHAR</stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="queryType">Prepared Select Statement</stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="variableNames"> IT_FIXEDID</stringProp>
+        </JDBCSampler>
+        <hashTree/>
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="Generate Authorization Header" enabled="true">
+          <stringProp name="BeanShellSampler.query">
+try {
+
+String authorization=net.mccg.third.party.authorization.AuthGenerator.getAuthorizationHeaderValue(vars.get(&quot;USERID&quot;),&quot;23&quot;,&quot;HIJ6U7DK&quot;,&quot;O2PFR5H3&quot;);
+vars.put(&quot;authorization&quot;,authorization);
+
+}
+catch (Excpetion e) {
+	log.warn(&quot;Error generating authorization header : &quot; + e.getmessage());
+}
+</stringProp>
+          <stringProp name="BeanShellSampler.filename"></stringProp>
+          <stringProp name="BeanShellSampler.parameters"></stringProp>
+          <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+        </BeanShellSampler>
+        <hashTree/>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">mccg-user</stringProp>
+              <stringProp name="Header.value">${USERID}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">mccg-sbu</stringProp>
+              <stringProp name="Header.value">${SBUID}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Authorization</stringProp>
+              <stringProp name="Header.value">${authorization}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Content-Type</stringProp>
+              <stringProp name="Header.value">application/xml</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">sbuid</stringProp>
+              <stringProp name="Header.value">23</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Get Policy Checksum" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="sbuid" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${SBUID}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">sbuid</stringProp>
+              </elementProp>
+              <elementProp name="editmode" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">modify</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">editmode</stringProp>
+              </elementProp>
+              <elementProp name="languagekey" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">en</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">languagekey</stringProp>
+              </elementProp>
+              <elementProp name="permission" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">4</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">permission</stringProp>
+              </elementProp>
+              <elementProp name="userid" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${USERID}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">userid</stringProp>
+              </elementProp>
+              <elementProp name="policykey" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${POLICYKEY}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">policykey</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server-name}</stringProp>
+          <stringProp name="HTTPSampler.port">8443</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+          <stringProp name="HTTPSampler.path">persistence-service-web/checksum</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">POLICYCHECKSUM</stringProp>
+            <stringProp name="RegexExtractor.regex">.*</stringProp>
+            <stringProp name="RegexExtractor.template">$0$</stringProp>
+            <stringProp name="RegexExtractor.default"></stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Add Request" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server-name}</stringProp>
+          <stringProp name="HTTPSampler.port">8443</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+          <stringProp name="HTTPSampler.path">csio-service-web/csio/pc/</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">true</boolProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient3.1</stringProp>
+          <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
+            <collectionProp name="HTTPFileArgs.files">
+              <elementProp name="${projectHome}\ratingsummary.pdf" elementType="HTTPFileArg">
+                <stringProp name="File.path">${projectHome}\ratingsummary.pdf</stringProp>
+                <stringProp name="File.paramname">ratingsummary.pdf</stringProp>
+                <stringProp name="File.mimetype">application/pdf</stringProp>
+              </elementProp>
+              <elementProp name="${projectHome}\summary.pdf" elementType="HTTPFileArg">
+                <stringProp name="File.path">${projectHome}\summary.pdf</stringProp>
+                <stringProp name="File.paramname">changeSummary</stringProp>
+                <stringProp name="File.mimetype">application/pdf</stringProp>
+              </elementProp>
+              <elementProp name="${TEST-TEMP-FILE}" elementType="HTTPFileArg">
+                <stringProp name="File.path">${TEST-TEMP-FILE}</stringProp>
+                <stringProp name="File.paramname">csio</stringProp>
+                <stringProp name="File.mimetype">application/xml</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Add Multipart heard" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">multipart/form-data</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="XML Request Template PreProcessor" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters">REQUEST-TEMPLATE-FILENAME</stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.io.*;
+import java.util.*;
+import org.apache.jmeter.config.*;
+
+try {
+
+   String templateName = vars.get(&quot;REQUEST-TEMPLATE-FILENAME&quot;);
+   String projectHome = vars.get(&quot;projectHome&quot;);
+   String filename = projectHome + File.separator + templateName;
+   log.info(&quot;Reading request xml : &quot; + filename);
+   File requestFile = new File(filename);
+   FileInputStream fileinputstream = new FileInputStream(filename);
+		
+   InputStreamReader inputStreamReader = new InputStreamReader(fileinputstream, java.nio.charset.Charset.forName(&quot;UTF-8&quot;)); 
+
+   BufferedReader xmlReader = new BufferedReader(inputStreamReader);
+
+   StringBuffer xmlData = new StringBuffer();
+ 
+   String line;
+   while( (line = xmlReader.readLine()) != null) { xmlData.append(line).append(&apos;\n&apos;); }
+
+   String requestSubst = xmlData.toString();
+   Iterator iter = vars.getIterator();
+
+   // loop thru all of the varables and replace any matching tags. This is as generic as it can be. 
+   while(iter.hasNext()) {
+	 Map.Entry currentEntry = iter.next();
+	 if(currentEntry.getKey() != null &amp;&amp; currentEntry.getValue() != null) {
+	    String tag = &quot;#mccg:&quot;+currentEntry.getKey().toUpperCase()+&quot;#&quot;; // Create a tag out of the key
+	    String value = currentEntry.getValue().toString();
+	    requestSubst = requestSubst.replaceAll(tag, value);
+	 }
+   }
+ 
+   // after all tag replacements have been done, put the result in the body argument
+   
+String tempFile = projectHome + File.separator + &quot;tmp&quot; + templateName;
+File file = new File(tempFile);
+FileWriter fw = new FileWriter(file);
+fw.write(requestSubst);
+fw.flush();
+fw.close();
+
+vars.put(&quot;TEST-TEMP-FILE&quot;, tempFile);
+   
+}
+catch (Exception e) {
+log.info(&quot;Exception : &quot; + e.getMessage());	
+
+
+}
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+        </hashTree>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+          <boolProp name="displayJMeterProperties">false</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <objProp>
+            <name></name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="QA - Add Additional Interest (Single request - Synchronous requests only)" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">stopthread</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1425569452000</longProp>
+        <longProp name="ThreadGroup.end_time">1425569452000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <stringProp name="TestPlan.comments">Currently this code writes out the transformed template before it sends it. It is not thread safe.</stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Request Parameters. " enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="POLICYKEY" elementType="Argument">
+              <stringProp name="Argument.name">POLICYKEY</stringProp>
+              <stringProp name="Argument.value">4076F01</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">Modifiable - Policy key to add to</stringProp>
+            </elementProp>
+            <elementProp name="REQUEST-TEMPLATE-FILENAME" elementType="Argument">
+              <stringProp name="Argument.name">REQUEST-TEMPLATE-FILENAME</stringProp>
+              <stringProp name="Argument.value">HomePolicyModRq_AddAdditionalInterest_template.xml</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="USERID" elementType="Argument">
+              <stringProp name="Argument.name">USERID</stringProp>
+              <stringProp name="Argument.value">212137557097493</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">Modifiable - objectid of the user to make the request as. </stringProp>
+            </elementProp>
+            <elementProp name="CHANGEDESC" elementType="Argument">
+              <stringProp name="Argument.name">CHANGEDESC</stringProp>
+              <stringProp name="Argument.value">QA Add AI - mappig complete</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">Modifiable - Change description in the XML</stringProp>
+            </elementProp>
+            <elementProp name="SBUID" elementType="Argument">
+              <stringProp name="Argument.name">SBUID</stringProp>
+              <stringProp name="Argument.value">23</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">Modifiable - Sbu Id</stringProp>
+            </elementProp>
+            <elementProp name="TRANSACTION-DATE" elementType="Argument">
+              <stringProp name="Argument.name">TRANSACTION-DATE</stringProp>
+              <stringProp name="Argument.value">2015-04-20T00:00:01</stringProp>
+              <stringProp name="Argument.desc">Target transaction effective date</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="LOCATIONNUMBER" elementType="Argument">
+              <stringProp name="Argument.name">LOCATIONNUMBER</stringProp>
+              <stringProp name="Argument.value">1</stringProp>
+              <stringProp name="Argument.desc">the risk location number to look at</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="ITEMNUMBER" elementType="Argument">
+              <stringProp name="Argument.name">ITEMNUMBER</stringProp>
+              <stringProp name="Argument.value">27</stringProp>
+              <stringProp name="Argument.desc">the item to add the AI to, if more than one use the first one</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Involved Party Fields" enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="IP_NAME" elementType="Argument">
+              <stringProp name="Argument.name">IP_NAME</stringProp>
+              <stringProp name="Argument.value">Homer Simpson</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="IP_ADDRESS" elementType="Argument">
+              <stringProp name="Argument.name">IP_ADDRESS</stringProp>
+              <stringProp name="Argument.value">123 Richmond Street, London, Ontario, N6G 4K9</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Policy Lookup SQL" enabled="true">
+          <stringProp name="dataSource">IBSDB</stringProp>
+          <stringProp name="query">  select 
+    py.objectid py_id, 
+    py.vnumber py_vn, 
+    substr(pytr.vmajorchangeid||&apos;.&apos;||pytr.vminorchangeid,1, 10) trnx,
+    r.risknumber, 
+    rl.addressid location_id,  
+    to_char(py.contracteffectivedate, &apos;YYYY-MM-DD&apos;) py_eff_date, 
+    to_char(py.contractexpirydate, &apos;YYYY-MM-DD&apos;) py_exp_dt, 
+    it.objectid as it_id
+  from 
+    wwp_policy py 
+    join wwp_transaction pytr
+      on py.objectid = pytr.policyid and py.vnumber = pytr.policyvnumber
+    join wwp_risk r
+      on py.objectid = r.policyid and py.vnumber = r.policyvnumber and pytr.objectid = r.policytransactionid
+    join wwp_risklocation rl
+      on r.objectid = rl.riskid and r.vnumber = rl.riskvnumber
+    join wwp_insuranceitem it
+      on rl.objectid = it.risklocationid and rl.vnumber = it.risklocationvnumber
+  where 
+    py.policykey = ?
+    and it.itemkey = ?
+    and rl.locationnumber = ?
+    and it.vtemplatestatus = 0
+    and it.vrecordstatus &lt;&gt; 13
+    and rl.vtemplatestatus = 0
+    and rl.vrecordstatus &lt;&gt; 13
+    and rownum = 1
+  order by
+    trnx, r.risknumber, rl.locationnumber</stringProp>
+          <stringProp name="queryArguments">${POLICYKEY}, ${ITEMNUMBER}, ${LOCATIONNUMBER}</stringProp>
+          <stringProp name="queryArgumentsTypes">VARCHAR, NUMERIC, NUMERIC</stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="queryType">Prepared Select Statement</stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="variableNames">PYID, PYVNUM, TRXN, RISKNUM, LOCID, PYEFFDT, PYEXPDT,  ITID</stringProp>
+        </JDBCSampler>
+        <hashTree/>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Fixed Location IDs SQL" enabled="true">
+          <stringProp name="dataSource">IBSDB</stringProp>
+          <stringProp name="query">select  ibs_csio.get_csio_fixed_id(5, ?, ?) locfixedid from dual
+</stringProp>
+          <stringProp name="queryArguments">${LOCID_1}, ${PYID_1}</stringProp>
+          <stringProp name="queryArgumentsTypes">VARCHAR, VARCHAR</stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="queryType">Prepared Select Statement</stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="variableNames">LOC_FIXEDID</stringProp>
+        </JDBCSampler>
+        <hashTree/>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Fixed Item IDs SQL" enabled="true">
+          <stringProp name="dataSource">IBSDB</stringProp>
+          <stringProp name="query">select  ibs_csio.get_csio_fixed_id(1, ?, ?) itfixedid from dual
+</stringProp>
+          <stringProp name="queryArguments">${ITID_1}, ${PYID_1}</stringProp>
+          <stringProp name="queryArgumentsTypes">VARCHAR, VARCHAR</stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="queryType">Prepared Select Statement</stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="variableNames">IT_FIXEDID</stringProp>
+        </JDBCSampler>
+        <hashTree/>
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="Generate Authorization Header" enabled="true">
+          <stringProp name="BeanShellSampler.query">
+try {
+
+String authorization=net.mccg.third.party.authorization.AuthGenerator.getAuthorizationHeaderValue(vars.get(&quot;USERID&quot;),&quot;23&quot;,&quot;HIJ6U7DK&quot;,&quot;O2PFR5H3&quot;);
+vars.put(&quot;authorization&quot;,authorization);
+
+}
+catch (Excpetion e) {
+	log.warn(&quot;Error generating authorization header : &quot; + e.getmessage());
+}
+</stringProp>
+          <stringProp name="BeanShellSampler.filename"></stringProp>
+          <stringProp name="BeanShellSampler.parameters"></stringProp>
+          <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+        </BeanShellSampler>
+        <hashTree/>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">mccg-user</stringProp>
+              <stringProp name="Header.value">${USERID}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">mccg-sbu</stringProp>
+              <stringProp name="Header.value">${SBUID}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Authorization</stringProp>
+              <stringProp name="Header.value">${authorization}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Content-Type</stringProp>
+              <stringProp name="Header.value">application/xml</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">sbuid</stringProp>
+              <stringProp name="Header.value">23</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Get Policy Checksum" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="sbuid" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${SBUID}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">sbuid</stringProp>
+              </elementProp>
+              <elementProp name="editmode" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">modify</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">editmode</stringProp>
+              </elementProp>
+              <elementProp name="languagekey" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">en</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">languagekey</stringProp>
+              </elementProp>
+              <elementProp name="permission" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">4</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">permission</stringProp>
+              </elementProp>
+              <elementProp name="userid" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${USERID}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">userid</stringProp>
+              </elementProp>
+              <elementProp name="policykey" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${POLICYKEY}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">policykey</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server-name}</stringProp>
+          <stringProp name="HTTPSampler.port">8443</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+          <stringProp name="HTTPSampler.path">persistence-service-web/checksum</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">POLICYCHECKSUM</stringProp>
+            <stringProp name="RegexExtractor.regex">.*</stringProp>
+            <stringProp name="RegexExtractor.template">$0$</stringProp>
+            <stringProp name="RegexExtractor.default"></stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Add Request" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server-name}</stringProp>
+          <stringProp name="HTTPSampler.port">8443</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+          <stringProp name="HTTPSampler.path">csio-service-web/csio/pc/</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">true</boolProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient3.1</stringProp>
+          <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
+            <collectionProp name="HTTPFileArgs.files">
+              <elementProp name="${projectHome}\ratingsummary.pdf" elementType="HTTPFileArg">
+                <stringProp name="File.path">${projectHome}\ratingsummary.pdf</stringProp>
+                <stringProp name="File.paramname">ratingsummary.pdf</stringProp>
+                <stringProp name="File.mimetype">application/pdf</stringProp>
+              </elementProp>
+              <elementProp name="${projectHome}\summary.pdf" elementType="HTTPFileArg">
+                <stringProp name="File.path">${projectHome}\summary.pdf</stringProp>
+                <stringProp name="File.paramname">summary.pdf</stringProp>
+                <stringProp name="File.mimetype">application/pdf</stringProp>
+              </elementProp>
+              <elementProp name="${TEST-TEMP-FILE}" elementType="HTTPFileArg">
+                <stringProp name="File.path">${TEST-TEMP-FILE}</stringProp>
+                <stringProp name="File.paramname">csio</stringProp>
+                <stringProp name="File.mimetype">application/xml</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Add Multipart heard" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">multipart/form-data</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="XML Request Template PreProcessor" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters">REQUEST-TEMPLATE-FILENAME</stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.io.*;
+import java.util.*;
+import org.apache.jmeter.config.*;
+
+try {
+
+   String templateName = vars.get(&quot;REQUEST-TEMPLATE-FILENAME&quot;);
+   String projectHome = vars.get(&quot;projectHome&quot;);
+   String filename = projectHome + File.separator + templateName;
+   log.info(&quot;Reading request xml : &quot; + filename);
+   File requestFile = new File(filename);
+   FileInputStream fileinputstream = new FileInputStream(filename);
+		
+   InputStreamReader inputStreamReader = new InputStreamReader(fileinputstream, java.nio.charset.Charset.forName(&quot;UTF-8&quot;)); 
+
+   BufferedReader xmlReader = new BufferedReader(inputStreamReader);
+
+   StringBuffer xmlData = new StringBuffer();
+ 
+   String line;
+   while( (line = xmlReader.readLine()) != null) { xmlData.append(line).append(&apos;\n&apos;); }
+
+   String requestSubst = xmlData.toString();
+   Iterator iter = vars.getIterator();
+
+   // loop thru all of the varables and replace any matching tags. This is as generic as it can be. 
+   while(iter.hasNext()) {
+	 Map.Entry currentEntry = iter.next();
+	 if(currentEntry.getKey() != null &amp;&amp; currentEntry.getValue() != null) {
+	    String tag = &quot;#mccg:&quot;+currentEntry.getKey().toUpperCase()+&quot;#&quot;; // Create a tag out of the key
+	    String value = currentEntry.getValue().toString();
+	    requestSubst = requestSubst.replaceAll(tag, value);
+	 }
+   }
+ 
+   // after all tag replacements have been done, put the result in the body argument
+   
+String tempFile = projectHome + File.separator + &quot;tmp&quot; + templateName;
+File file = new File(tempFile);
+FileWriter fw = new FileWriter(file);
+fw.write(requestSubst);
+fw.flush();
+fw.close();
+
+vars.put(&quot;TEST-TEMP-FILE&quot;, tempFile);
+   
+}
+catch (Exception e) {
+log.info(&quot;Exception : &quot; + e.getMessage());	
+
+
+}
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+        </hashTree>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+          <boolProp name="displayJMeterProperties">false</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <objProp>
+            <name></name>
+            <value class="SampleSaveConfiguration" reference="../../../../hashTree[6]/ResultCollector/objProp[2]/value"/>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Add Leinholder (Single request - Synchronous requests only)" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">stopthread</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1425569452000</longProp>
+        <longProp name="ThreadGroup.end_time">1425569452000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <stringProp name="TestPlan.comments">Currently this code writes out the transformed template before it sends it. It is not thread safe.</stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Request Parameters. " enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="POLICYKEY" elementType="Argument">
+              <stringProp name="Argument.name">POLICYKEY</stringProp>
+              <stringProp name="Argument.value">106374A01</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">Modifiable - Policy key to add to</stringProp>
+            </elementProp>
+            <elementProp name="REQUEST-TEMPLATE-FILENAME" elementType="Argument">
+              <stringProp name="Argument.name">REQUEST-TEMPLATE-FILENAME</stringProp>
+              <stringProp name="Argument.value">AutoPolicyModRq_AddAdditionalInterest_template.xml</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="USERID" elementType="Argument">
+              <stringProp name="Argument.name">USERID</stringProp>
+              <stringProp name="Argument.value">212137557097493</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">Modifiable - objectid of the user to make the request as. </stringProp>
+            </elementProp>
+            <elementProp name="CHANGEDESC" elementType="Argument">
+              <stringProp name="Argument.name">CHANGEDESC</stringProp>
+              <stringProp name="Argument.value">Jmeter Automated Test mark</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">Modifiable - Change description in the XML</stringProp>
+            </elementProp>
+            <elementProp name="SBUID" elementType="Argument">
+              <stringProp name="Argument.name">SBUID</stringProp>
+              <stringProp name="Argument.value">23</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">Modifiable - Sbu Id</stringProp>
+            </elementProp>
+            <elementProp name="TRANSACTION-DATE" elementType="Argument">
+              <stringProp name="Argument.name">TRANSACTION-DATE</stringProp>
+              <stringProp name="Argument.value">2015-04-29T00:00:01</stringProp>
+              <stringProp name="Argument.desc">Target transaction effective date</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Involved Party Fields" enabled="true">
+          <collectionProp name="Arguments.arguments"/>
+        </Arguments>
+        <hashTree/>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Policy Lookup SQL" enabled="true">
+          <stringProp name="dataSource">IBSDB</stringProp>
+          <stringProp name="query">    select 
+    py.objectid py_id, 
+    py.vnumber py_vn, 
+    substr(pytr.vmajorchangeid||&apos;.&apos;||pytr.vminorchangeid,1, 10) trnx,
+    r.risknumber, 
+    rl.locationnumber, 
+    rl.addressid location_id, 
+    ct.formattedname_singleline, 
+    ip.objectid ip_id, 
+    ip.vnumber ip_vn, 
+    to_char(py.contracteffectivedate, &apos;YYYY-MM-DD&apos;) py_eff_date, 
+    to_char(py.contractexpirydate, &apos;YYYY-MM-DD&apos;) py_exp_dt, 
+    to_char(ip.veffectivedate, &apos;YYYY-MM-DD&apos;) ip_eff_dt, 
+    it.objectid as it_id
+  from 
+    wwp_policy py 
+    join wwp_transaction pytr
+      on py.objectid = pytr.policyid and py.vnumber = pytr.policyvnumber
+    join wwp_risk r
+      on py.objectid = r.policyid and py.vnumber = r.policyvnumber and pytr.objectid = r.policytransactionid
+    join wwp_risklocation rl
+      on r.objectid = rl.riskid and r.vnumber = rl.riskvnumber
+    join wwp_insuranceitem it
+      on rl.objectid = it.risklocationid and rl.vnumber = it.risklocationvnumber
+    join wwl_insiteminvolvedparty itip
+      on it.objectid = itip.insitemid and it.vnumber = itip.insitemvnumber
+    join wwp_involvedparty ip
+     on ip.objectid = itip.involvedpartyid and ip.vnumber = itip.involvedpartyvnumber
+    join wwz_contact ct
+      on ct.objectid = ip.contactid and ct.vnumber = ip.contactvnumber
+    join wwp_additionalinterest ai
+      on ip.objectid = ai.involvedpartyid and ip.vnumber = ai.involvedpartyvnumber
+  where 
+    py.policykey = ?
+ --   and ip.vtemplatestatus = 0
+ --   and ip.vrecordstatus &lt;&gt; 13
+    --and ct.formattedname_singleline = ?
+  order by
+    trnx, r.risknumber, rl.locationnumber</stringProp>
+          <stringProp name="queryArguments">${POLICYKEY}</stringProp>
+          <stringProp name="queryArgumentsTypes">VARCHAR</stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="queryType">Prepared Select Statement</stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="variableNames">PYID, PYVNUM, TRXN, RISKNUM, LOCNUM, LOCID, NAME, IPID, IPVNUM, PYEFFDT, PYEXPDT,  IPEFFDT, ITID</stringProp>
+        </JDBCSampler>
+        <hashTree/>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Fixed Location IDs SQL" enabled="true">
+          <stringProp name="dataSource">IBSDB</stringProp>
+          <stringProp name="query">select  ibs_csio.get_csio_fixed_id(5, ?, ?) locfixedid from dual
+</stringProp>
+          <stringProp name="queryArguments">${LOCID_1}, ${PYID_1}</stringProp>
+          <stringProp name="queryArgumentsTypes">VARCHAR, VARCHAR</stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="queryType">Prepared Select Statement</stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="variableNames">IP_FIXEDID</stringProp>
+        </JDBCSampler>
+        <hashTree/>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Fixed Item IDs SQL" enabled="true">
+          <stringProp name="dataSource">IBSDB</stringProp>
+          <stringProp name="query">select  ibs_csio.get_csio_fixed_id(1, ?, ?) itfixedid from dual
+</stringProp>
+          <stringProp name="queryArguments">${ITID_1}, ${PYID_1}</stringProp>
+          <stringProp name="queryArgumentsTypes">VARCHAR, VARCHAR</stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="queryType">Prepared Select Statement</stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="variableNames"> IT_FIXEDID</stringProp>
+        </JDBCSampler>
+        <hashTree/>
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="Generate Authorization Header" enabled="true">
+          <stringProp name="BeanShellSampler.query">
+try {
+
+String authorization=net.mccg.third.party.authorization.AuthGenerator.getAuthorizationHeaderValue(vars.get(&quot;USERID&quot;),&quot;23&quot;,&quot;HIJ6U7DK&quot;,&quot;O2PFR5H3&quot;);
+vars.put(&quot;authorization&quot;,authorization);
+
+}
+catch (Excpetion e) {
+	log.warn(&quot;Error generating authorization header : &quot; + e.getmessage());
+}
+</stringProp>
+          <stringProp name="BeanShellSampler.filename"></stringProp>
+          <stringProp name="BeanShellSampler.parameters"></stringProp>
+          <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+        </BeanShellSampler>
+        <hashTree/>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">mccg-user</stringProp>
+              <stringProp name="Header.value">${USERID}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">mccg-sbu</stringProp>
+              <stringProp name="Header.value">${SBUID}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Authorization</stringProp>
+              <stringProp name="Header.value">${authorization}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Content-Type</stringProp>
+              <stringProp name="Header.value">application/xml</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">sbuid</stringProp>
+              <stringProp name="Header.value">23</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Get Policy Checksum" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="sbuid" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${SBUID}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">sbuid</stringProp>
+              </elementProp>
+              <elementProp name="editmode" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">modify</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">editmode</stringProp>
+              </elementProp>
+              <elementProp name="languagekey" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">en</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">languagekey</stringProp>
+              </elementProp>
+              <elementProp name="permission" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">4</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">permission</stringProp>
+              </elementProp>
+              <elementProp name="userid" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${USERID}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">userid</stringProp>
+              </elementProp>
+              <elementProp name="policykey" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${POLICYKEY}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">policykey</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server-name-app1}</stringProp>
+          <stringProp name="HTTPSampler.port">8443</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+          <stringProp name="HTTPSampler.path">persistence-service-web/checksum</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">POLICYCHECKSUM</stringProp>
+            <stringProp name="RegexExtractor.regex">.*</stringProp>
+            <stringProp name="RegexExtractor.template">$0$</stringProp>
+            <stringProp name="RegexExtractor.default"></stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Add Request" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server-name-app1}</stringProp>
+          <stringProp name="HTTPSampler.port">8443</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+          <stringProp name="HTTPSampler.path">csio-service-web/csio/pc/</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">true</boolProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient3.1</stringProp>
+          <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
+            <collectionProp name="HTTPFileArgs.files">
+              <elementProp name="${projectHome}\ratingsummary.pdf" elementType="HTTPFileArg">
+                <stringProp name="File.path">${projectHome}\ratingsummary.pdf</stringProp>
+                <stringProp name="File.paramname">ratingsummary.pdf</stringProp>
+                <stringProp name="File.mimetype">application/pdf</stringProp>
+              </elementProp>
+              <elementProp name="${projectHome}\summary.pdf" elementType="HTTPFileArg">
+                <stringProp name="File.path">${projectHome}\summary.pdf</stringProp>
+                <stringProp name="File.paramname">changeSummary</stringProp>
+                <stringProp name="File.mimetype">application/pdf</stringProp>
+              </elementProp>
+              <elementProp name="${TEST-TEMP-FILE}" elementType="HTTPFileArg">
+                <stringProp name="File.path">${TEST-TEMP-FILE}</stringProp>
+                <stringProp name="File.paramname">csio</stringProp>
+                <stringProp name="File.mimetype">application/xml</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Add Multipart heard" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">multipart/form-data</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="XML Request Template PreProcessor" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters">REQUEST-TEMPLATE-FILENAME</stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.io.*;
+import java.util.*;
+import org.apache.jmeter.config.*;
+
+try {
+
+   String templateName = vars.get(&quot;REQUEST-TEMPLATE-FILENAME&quot;);
+   String projectHome = vars.get(&quot;projectHome&quot;);
+   String filename = projectHome + File.separator + templateName;
+   log.info(&quot;Reading request xml : &quot; + filename);
+   File requestFile = new File(filename);
+   FileInputStream fileinputstream = new FileInputStream(filename);
+		
+   InputStreamReader inputStreamReader = new InputStreamReader(fileinputstream, java.nio.charset.Charset.forName(&quot;UTF-8&quot;)); 
+
+   BufferedReader xmlReader = new BufferedReader(inputStreamReader);
+
+   StringBuffer xmlData = new StringBuffer();
+ 
+   String line;
+   while( (line = xmlReader.readLine()) != null) { xmlData.append(line).append(&apos;\n&apos;); }
+
+   String requestSubst = xmlData.toString();
+   Iterator iter = vars.getIterator();
+
+   // loop thru all of the varables and replace any matching tags. This is as generic as it can be. 
+   while(iter.hasNext()) {
+	 Map.Entry currentEntry = iter.next();
+	 if(currentEntry.getKey() != null &amp;&amp; currentEntry.getValue() != null) {
+	    String tag = &quot;#mccg:&quot;+currentEntry.getKey().toUpperCase()+&quot;#&quot;; // Create a tag out of the key
+	    String value = currentEntry.getValue().toString();
+	    requestSubst = requestSubst.replaceAll(tag, value);
+	 }
+   }
+ 
+   // after all tag replacements have been done, put the result in the body argument
+   
+String tempFile = projectHome + File.separator + &quot;tmp&quot; + templateName;
+File file = new File(tempFile);
+FileWriter fw = new FileWriter(file);
+fw.write(requestSubst);
+fw.flush();
+fw.close();
+
+vars.put(&quot;TEST-TEMP-FILE&quot;, tempFile);
+   
+}
+catch (Exception e) {
+log.info(&quot;Exception : &quot; + e.getMessage());	
+
+
+}
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+        </hashTree>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+          <boolProp name="displayJMeterProperties">false</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <objProp>
+            <name></name>
+            <value class="SampleSaveConfiguration" reference="../../../../hashTree[6]/ResultCollector/objProp[2]/value"/>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Add Leinholder (Brovada testing)" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">stopthread</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1425569452000</longProp>
+        <longProp name="ThreadGroup.end_time">1425569452000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <stringProp name="TestPlan.comments">Currently this code writes out the transformed template before it sends it. It is not thread safe.</stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Request Parameters. " enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="POLICYKEY" elementType="Argument">
+              <stringProp name="Argument.name">POLICYKEY</stringProp>
+              <stringProp name="Argument.value">106374A01</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">Modifiable - Policy key to add to</stringProp>
+            </elementProp>
+            <elementProp name="REQUEST-TEMPLATE-FILENAME" elementType="Argument">
+              <stringProp name="Argument.name">REQUEST-TEMPLATE-FILENAME</stringProp>
+              <stringProp name="Argument.value">AutoPolicyModRq_AddAdditionalInterest_template.xml</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="USERID" elementType="Argument">
+              <stringProp name="Argument.name">USERID</stringProp>
+              <stringProp name="Argument.value">212137557097493</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">Modifiable - objectid of the user to make the request as. </stringProp>
+            </elementProp>
+            <elementProp name="CHANGEDESC" elementType="Argument">
+              <stringProp name="Argument.name">CHANGEDESC</stringProp>
+              <stringProp name="Argument.value">Jmeter Automated Test mark</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">Modifiable - Change description in the XML</stringProp>
+            </elementProp>
+            <elementProp name="SBUID" elementType="Argument">
+              <stringProp name="Argument.name">SBUID</stringProp>
+              <stringProp name="Argument.value">23</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">Modifiable - Sbu Id</stringProp>
+            </elementProp>
+            <elementProp name="TRANSACTION-DATE" elementType="Argument">
+              <stringProp name="Argument.name">TRANSACTION-DATE</stringProp>
+              <stringProp name="Argument.value">2015-04-29T00:00:01</stringProp>
+              <stringProp name="Argument.desc">Target transaction effective date</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Involved Party Fields" enabled="true">
+          <collectionProp name="Arguments.arguments"/>
+        </Arguments>
+        <hashTree/>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Policy Lookup SQL" enabled="true">
+          <stringProp name="dataSource">IBSDB</stringProp>
+          <stringProp name="query">    select 
+    py.objectid py_id, 
+    py.vnumber py_vn, 
+    substr(pytr.vmajorchangeid||&apos;.&apos;||pytr.vminorchangeid,1, 10) trnx,
+    r.risknumber, 
+    rl.locationnumber, 
+    rl.addressid location_id, 
+    ct.formattedname_singleline, 
+    ip.objectid ip_id, 
+    ip.vnumber ip_vn, 
+    to_char(py.contracteffectivedate, &apos;YYYY-MM-DD&apos;) py_eff_date, 
+    to_char(py.contractexpirydate, &apos;YYYY-MM-DD&apos;) py_exp_dt, 
+    to_char(ip.veffectivedate, &apos;YYYY-MM-DD&apos;) ip_eff_dt, 
+    it.objectid as it_id
+  from 
+    wwp_policy py 
+    join wwp_transaction pytr
+      on py.objectid = pytr.policyid and py.vnumber = pytr.policyvnumber
+    join wwp_risk r
+      on py.objectid = r.policyid and py.vnumber = r.policyvnumber and pytr.objectid = r.policytransactionid
+    join wwp_risklocation rl
+      on r.objectid = rl.riskid and r.vnumber = rl.riskvnumber
+    join wwp_insuranceitem it
+      on rl.objectid = it.risklocationid and rl.vnumber = it.risklocationvnumber
+    join wwl_insiteminvolvedparty itip
+      on it.objectid = itip.insitemid and it.vnumber = itip.insitemvnumber
+    join wwp_involvedparty ip
+     on ip.objectid = itip.involvedpartyid and ip.vnumber = itip.involvedpartyvnumber
+    join wwz_contact ct
+      on ct.objectid = ip.contactid and ct.vnumber = ip.contactvnumber
+    join wwp_additionalinterest ai
+      on ip.objectid = ai.involvedpartyid and ip.vnumber = ai.involvedpartyvnumber
+  where 
+    py.policykey = ?
+ --   and ip.vtemplatestatus = 0
+ --   and ip.vrecordstatus &lt;&gt; 13
+    --and ct.formattedname_singleline = ?
+  order by
+    trnx, r.risknumber, rl.locationnumber</stringProp>
+          <stringProp name="queryArguments">${POLICYKEY}</stringProp>
+          <stringProp name="queryArgumentsTypes">VARCHAR</stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="queryType">Prepared Select Statement</stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="variableNames">PYID, PYVNUM, TRXN, RISKNUM, LOCNUM, LOCID, NAME, IPID, IPVNUM, PYEFFDT, PYEXPDT,  IPEFFDT, ITID</stringProp>
+        </JDBCSampler>
+        <hashTree/>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Fixed Location IDs SQL" enabled="true">
+          <stringProp name="dataSource">IBSDB</stringProp>
+          <stringProp name="query">select  ibs_csio.get_csio_fixed_id(5, ?, ?) locfixedid from dual
+</stringProp>
+          <stringProp name="queryArguments">${LOCID_1}, ${PYID_1}</stringProp>
+          <stringProp name="queryArgumentsTypes">VARCHAR, VARCHAR</stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="queryType">Prepared Select Statement</stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="variableNames">IP_FIXEDID</stringProp>
+        </JDBCSampler>
+        <hashTree/>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Fixed Item IDs SQL" enabled="true">
+          <stringProp name="dataSource">IBSDB</stringProp>
+          <stringProp name="query">select  ibs_csio.get_csio_fixed_id(1, ?, ?) itfixedid from dual
+</stringProp>
+          <stringProp name="queryArguments">${ITID_1}, ${PYID_1}</stringProp>
+          <stringProp name="queryArgumentsTypes">VARCHAR, VARCHAR</stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="queryType">Prepared Select Statement</stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="variableNames"> IT_FIXEDID</stringProp>
+        </JDBCSampler>
+        <hashTree/>
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="Generate Authorization Header" enabled="true">
+          <stringProp name="BeanShellSampler.query">
+try {
+
+String authorization=net.mccg.third.party.authorization.AuthGenerator.getAuthorizationHeaderValue(vars.get(&quot;USERID&quot;),&quot;23&quot;,&quot;HIJ6U7DK&quot;,&quot;O2PFR5H3&quot;);
+vars.put(&quot;authorization&quot;,authorization);
+
+}
+catch (Excpetion e) {
+	log.warn(&quot;Error generating authorization header : &quot; + e.getmessage());
+}
+</stringProp>
+          <stringProp name="BeanShellSampler.filename"></stringProp>
+          <stringProp name="BeanShellSampler.parameters"></stringProp>
+          <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+        </BeanShellSampler>
+        <hashTree/>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">mccg-user</stringProp>
+              <stringProp name="Header.value">${USERID}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">mccg-sbu</stringProp>
+              <stringProp name="Header.value">${SBUID}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Authorization</stringProp>
+              <stringProp name="Header.value">${authorization}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Content-Type</stringProp>
+              <stringProp name="Header.value">application/xml</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">sbuid</stringProp>
+              <stringProp name="Header.value">23</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Get Policy Checksum" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="sbuid" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${SBUID}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">sbuid</stringProp>
+              </elementProp>
+              <elementProp name="editmode" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">modify</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">editmode</stringProp>
+              </elementProp>
+              <elementProp name="languagekey" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">en</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">languagekey</stringProp>
+              </elementProp>
+              <elementProp name="permission" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">4</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">permission</stringProp>
+              </elementProp>
+              <elementProp name="userid" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${USERID}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">userid</stringProp>
+              </elementProp>
+              <elementProp name="policykey" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${POLICYKEY}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">policykey</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server-name-app1}</stringProp>
+          <stringProp name="HTTPSampler.port">8443</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+          <stringProp name="HTTPSampler.path">persistence-service-web/checksum</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">POLICYCHECKSUM</stringProp>
+            <stringProp name="RegexExtractor.regex">.*</stringProp>
+            <stringProp name="RegexExtractor.template">$0$</stringProp>
+            <stringProp name="RegexExtractor.default"></stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Add Request" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server-name-app2}</stringProp>
+          <stringProp name="HTTPSampler.port">9443</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+          <stringProp name="HTTPSampler.path">mccg/csio-service-web/csio/pc/</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">true</boolProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient3.1</stringProp>
+          <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
+            <collectionProp name="HTTPFileArgs.files">
+              <elementProp name="${projectHome}\ratingsummary.pdf" elementType="HTTPFileArg">
+                <stringProp name="File.path">${projectHome}\ratingsummary.pdf</stringProp>
+                <stringProp name="File.paramname">ratingsummary.pdf</stringProp>
+                <stringProp name="File.mimetype">application/pdf</stringProp>
+              </elementProp>
+              <elementProp name="${projectHome}\summary.pdf" elementType="HTTPFileArg">
+                <stringProp name="File.path">${projectHome}\summary.pdf</stringProp>
+                <stringProp name="File.paramname">changeSummary</stringProp>
+                <stringProp name="File.mimetype">application/pdf</stringProp>
+              </elementProp>
+              <elementProp name="${TEST-TEMP-FILE}" elementType="HTTPFileArg">
+                <stringProp name="File.path">${TEST-TEMP-FILE}</stringProp>
+                <stringProp name="File.paramname">csio</stringProp>
+                <stringProp name="File.mimetype">application/xml</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Add Multipart heard" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">multipart/form-data</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="XML Request Template PreProcessor" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters">REQUEST-TEMPLATE-FILENAME</stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">import java.io.*;
+import java.util.*;
+import org.apache.jmeter.config.*;
+
+try {
+
+   String templateName = vars.get(&quot;REQUEST-TEMPLATE-FILENAME&quot;);
+   String projectHome = vars.get(&quot;projectHome&quot;);
+   String filename = projectHome + File.separator + templateName;
+   log.info(&quot;Reading request xml : &quot; + filename);
+   File requestFile = new File(filename);
+   FileInputStream fileinputstream = new FileInputStream(filename);
+		
+   InputStreamReader inputStreamReader = new InputStreamReader(fileinputstream, java.nio.charset.Charset.forName(&quot;UTF-8&quot;)); 
+
+   BufferedReader xmlReader = new BufferedReader(inputStreamReader);
+
+   StringBuffer xmlData = new StringBuffer();
+ 
+   String line;
+   while( (line = xmlReader.readLine()) != null) { xmlData.append(line).append(&apos;\n&apos;); }
+
+   String requestSubst = xmlData.toString();
+   Iterator iter = vars.getIterator();
+
+   // loop thru all of the varables and replace any matching tags. This is as generic as it can be. 
+   while(iter.hasNext()) {
+	 Map.Entry currentEntry = iter.next();
+	 if(currentEntry.getKey() != null &amp;&amp; currentEntry.getValue() != null) {
+	    String tag = &quot;#mccg:&quot;+currentEntry.getKey().toUpperCase()+&quot;#&quot;; // Create a tag out of the key
+	    String value = currentEntry.getValue().toString();
+	    requestSubst = requestSubst.replaceAll(tag, value);
+	 }
+   }
+ 
+   // after all tag replacements have been done, put the result in the body argument
+   
+String tempFile = projectHome + File.separator + &quot;tmp&quot; + templateName;
+File file = new File(tempFile);
+FileWriter fw = new FileWriter(file);
+fw.write(requestSubst);
+fw.flush();
+fw.close();
+
+vars.put(&quot;TEST-TEMP-FILE&quot;, tempFile);
+   
+}
+catch (Exception e) {
+log.info(&quot;Exception : &quot; + e.getMessage());	
+
+
+}
+</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+        </hashTree>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+          <boolProp name="displayJMeterProperties">false</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <objProp>
+            <name></name>
+            <value class="SampleSaveConfiguration" reference="../../../../hashTree[6]/ResultCollector/objProp[2]/value"/>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Test Nature of Interest Lookup" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1432063951000</longProp>
+        <longProp name="ThreadGroup.end_time">1432063951000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="START" elementType="Argument">
+              <stringProp name="Argument.name">START</stringProp>
+              <stringProp name="Argument.value"></stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="END" elementType="Argument">
+              <stringProp name="Argument.name">END</stringProp>
+              <stringProp name="Argument.value"></stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="BeanShell Sampler" enabled="true">
+          <stringProp name="BeanShellSampler.query">import java.io.*;
+import java.util.*;
+import org.apache.jmeter.config.*;
+
+try {
+Date start = new Date();
+long value = start.getTime();
+
+   vars.put(&quot;START&quot;, String.valueOf(value));
+   vars.put(&quot;END&quot;, String.valueOf(value));
+}
+catch (Exception e) {
+log.info(&quot;Exception : &quot; + e.getMessage());	
+
+
+}
+</stringProp>
+          <stringProp name="BeanShellSampler.filename"></stringProp>
+          <stringProp name="BeanShellSampler.parameters"></stringProp>
+          <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+        </BeanShellSampler>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8443</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/ibs-web-services/ibs/security/authenticate/</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient3.1</stringProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">LOGIN_TOKEN</stringProp>
+            <stringProp name="RegexExtractor.regex">.*</stringProp>
+            <stringProp name="RegexExtractor.template">$0$</stringProp>
+            <stringProp name="RegexExtractor.default"></stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">applicationID</stringProp>
+                <stringProp name="Header.value">Windows_Client</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">sbuID</stringProp>
+                <stringProp name="Header.value">23</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">username</stringProp>
+                <stringProp name="Header.value">mccg</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">password</stringProp>
+                <stringProp name="Header.value">AeXOV1Jc1iy6qv4ghKjWM4N8fSY=</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">computerName</stringProp>
+                <stringProp name="Header.value">test-computer</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">networkUserName</stringProp>
+                <stringProp name="Header.value">test-networkname</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">IPAddress</stringProp>
+                <stringProp name="Header.value">192.168.1.1</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">OSVersion</stringProp>
+                <stringProp name="Header.value">Windows_Client</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+          <boolProp name="displayJMeterProperties">true</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="code" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">AC</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">code</stringProp>
+              </elementProp>
+              <elementProp name="start" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${START}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">start</stringProp>
+              </elementProp>
+              <elementProp name="end" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${END}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">end</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8443</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/ibs-web-services/ibs/lookup/NatureOfInterest/</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient3.1</stringProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">token</stringProp>
+                <stringProp name="Header.value">${LOGIN_TOKEN}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">sbuid</stringProp>
+                <stringProp name="Header.value">23</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <objProp>
+            <name></name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

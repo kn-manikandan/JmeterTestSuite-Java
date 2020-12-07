@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ACORD xmlns:ns2="http://www.CSIO.org/standards/PC_Surety/CSIO1/xml/"
+       xmlns="http://www.ACORD.org/standards/PC_Surety/ACORD1/xml/">
+    <SignonRq>
+        <SignonPswd>
+            <CustId>
+                <SPName>brovada.com</SPName>
+                <CustLoginId>35brokAB</CustLoginId>
+            </CustId>
+            <CustPswd>
+                <EncryptionTypeCd>NONE</EncryptionTypeCd>
+            </CustPswd>
+        </SignonPswd>
+        <ClientDt>2013-05-09</ClientDt>
+        <CustLangPref>EN</CustLangPref>
+        <ClientApp>
+            <Org>Zycomp Systems Ltd</Org>
+            <Name>Power Broker</Name>
+            <Version>4.30</Version>
+        </ClientApp>
+        <ProxyClient>
+            <Org>Zycomp Systems Ltd</Org>
+            <Name>Power Broker</Name>
+            <Version>4.30</Version>
+        </ProxyClient>
+    </SignonRq>
+    <InsuranceSvcRq>
+        <RqUID>A2C4EE9B-7BEB-4E39-AD3A-9FC49FF3A50B</RqUID>
+        <PersAutoPolicyModRq xmlns="http://www.ACORD.org/standards/PC_Surety/ACORD1/xml/"
+                             xmlns:acord="http://www.ACORD.org/standards/PC_Surety/ACORD1/xml/"
+                             xmlns:csio="http://www.CSIO.org/standards/PC_Surety/CSIO1/xml/"
+                             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ACORD.org/standards/PC_Surety/ACORD1/xml/
+./ACORD-ca-v1-27-0-yescode.xsd">
+            <RqUID>00000000-0000-0000-0000-000000000000</RqUID>
+            <TransactionRequestDt>2015-05-01T14:30:47</TransactionRequestDt>
+            <TransactionEffectiveDt>#mccg:TRANSACTION-DATE#</TransactionEffectiveDt>
+            <CurCd id="ID003033" CodeListRef="ID003033">CAD</CurCd>
+            <ModInfo IdRef="C1">
+                <ActionCd>D</ActionCd>
+                <ChangeDesc>#mccg:CHANGEDESC#</ChangeDesc>
+            </ModInfo>
+            <InsuredOrPrincipal>
+                <ItemIdInfo>
+                    <AgencyId>1928759</AgencyId>
+                </ItemIdInfo>
+            </InsuredOrPrincipal>
+            <PersPolicy>
+                <PolicyNumber>#mccg:POLICYKEY#</PolicyNumber>
+                <LOBCd>csio:AUTO</LOBCd>
+                <ContractTerm>
+                    <EffectiveDt>#mccg:PYEFFDT_1#</EffectiveDt>
+                    <ExpirationDt>#mccg:PYEXPDT_1#</ExpirationDt>
+                    <StartTime>00:00:01</StartTime>
+                    <EndTime>23:59:59</EndTime>
+                </ContractTerm>
+                <csio:TotalEstimatedAmt>
+                    <Amt>177.10</Amt>
+                    <CurCd>CAD</CurCd>
+                </csio:TotalEstimatedAmt>
+            </PersPolicy>
+            <PersAutoLineBusiness>
+                <LOBCd>csio:AUTO</LOBCd>
+                <PersVeh id="VEH-1">
+                    <csio:PCVEH>
+                        <ItemIdInfo>
+                            <InsurerId>1</InsurerId>
+                            <csio:FixedId>#mccg:IT_FIXEDID_1#</csio:FixedId>
+                        </ItemIdInfo>
+                        <Manufacturer>Toyota</Manufacturer>
+                        <Model>Sienna</Model>
+                        <ModelYear>2008</ModelYear>
+                        <VehIdentificationNumber>1B4YEM9P4KP186543</VehIdentificationNumber>
+                        <PurchasePriceAmt>
+                            <Amt>35000</Amt>
+                            <CurCd>CAD</CurCd>
+                        </PurchasePriceAmt>
+                    </csio:PCVEH>
+                    <Coverage id="C1">
+                        <CoverageCd>csio:TPDC</CoverageCd>
+                    </Coverage>
+                </PersVeh>
+            </PersAutoLineBusiness>
+        </PersAutoPolicyModRq>
+    </InsuranceSvcRq>
+</ACORD>

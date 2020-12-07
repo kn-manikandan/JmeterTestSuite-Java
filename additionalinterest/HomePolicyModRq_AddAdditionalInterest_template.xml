@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ACORD xmlns="http://www.ACORD.org/standards/PC_Surety/ACORD1/xml/" xmlns:csio="http://www.CSIO.org/standards/PC_Surety/CSIO1/xml/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ACORD.org/standards/PC_Surety/ACORD1/xml/
+./ACORD-ca-v1-25-1-yescode.xsd">
+    <InsuranceSvcRq>
+        <RqUID>00000000-0000-0000-0000-000000012345</RqUID>
+        <HomePolicyModRq>
+            <RqUID>00000000-0000-0000-0000-000000012345</RqUID>
+            <TransactionRequestDt>2016-01-27T14:30:47</TransactionRequestDt>
+            <TransactionEffectiveDt>#mccg:TRANSACTION-DATE#</TransactionEffectiveDt>
+            <CurCd id="ID003033" CodeListRef="ID003033">CAD</CurCd>
+            <BroadLOBCd>PERS</BroadLOBCd>
+            <ACORDStandardVersionCd>1126</ACORDStandardVersionCd>
+            <ItemIdInfo>
+                <OtherIdentifier>
+                    <OtherIdTypeCd>mccg:PolicyChecksum</OtherIdTypeCd>
+                    <OtherId>#mccg:POLICYCHECKSUM#</OtherId>
+                </OtherIdentifier>
+            </ItemIdInfo>
+            <ModInfo IdRef="C1">
+                <ActionCd>A</ActionCd>
+                <PreviousValue/>
+                <RefNameCd/>
+                <ChangeDesc>#mccg:CHANGEDESC#</ChangeDesc>
+            </ModInfo>
+            <PersPolicy>
+                <PolicyNumber>#mccg:POLICYKEY#</PolicyNumber>
+                <PolicyVersion>C-4</PolicyVersion>
+                <CompanyProductCd>Property</CompanyProductCd>
+                <BroadLOBCd>PERS</BroadLOBCd>
+                <LOBCd>HABL</LOBCd>
+                <LOBSubCd>HOME</LOBSubCd>
+                <ContractTerm>
+                    <EffectiveDt>#mccg:PYEFFDT_1#</EffectiveDt>
+                    <ExpirationDt>#mccg:PYEXPDT_1#</ExpirationDt>
+                    <StartTime>00:00:01</StartTime>
+                    <EndTime>23:59:59</EndTime>
+                </ContractTerm>
+                <csio:TotalEstimatedAmt>
+                    <Amt>177.10</Amt>
+                    <CurCd>CAD</CurCd>
+                </csio:TotalEstimatedAmt>
+            </PersPolicy>
+            <Location>
+                <ItemIdInfo>
+                    <AgencyId/>
+                    <InsurerId/>
+                    <SystemId/>
+                    <OtherIdentifier/>
+                    <csio:FixedId>#mccg:IT_FIXEDID_1#</csio:FixedId>
+                    <!-- IBS item == CSIO location -->
+                </ItemIdInfo>
+                <Addr>
+                    <AddrTypeCd>csio:2</AddrTypeCd>
+                    <Addr1>1234 Wonderland Road, London, Ontario, N6G 0E8</Addr1>
+                    <!-- We may find that <Detail Addr> is better -->
+                    <DetailAddr/>
+                </Addr>
+                <AdditionalInterest id="C1">
+                    <ItemIdInfo>
+                        <AgencyId/>
+                        <InsurerId/>
+                        <SystemId/>
+                        <OtherIdentifier/>
+                        <csio:FixedId>0</csio:FixedId>
+                    </ItemIdInfo>
+                    <GeneralPartyInfo>
+                        <NameInfo>
+                            <!--<CommlName>
+                                <CommercialName>#mccg:IP_NAME#</CommercialName>
+                                <IndexName>#mccg:IP_NAME#</IndexName>
+                                <SupplementaryNameInfo/>
+                            </CommlName>  -->
+                            <!--<FamilyName>-->
+                                <!--<TitlePrefix>Mr.</TitlePrefix>-->
+                                <!--<FamilyNames>John and Mary</FamilyNames>-->
+                                <!--<Surname>Smith</Surname>-->
+                            <!--</FamilyName>-->
+                            <PersonName>
+                                <Surname>Petersen</Surname>
+                                <GivenName>Adrian</GivenName>
+                                <TitlePrefix>Mr.</TitlePrefix>
+                            </PersonName>
+                            <LegalEntityCd/>
+                            <TaxIdentity/>
+                            <NonTaxIdentity/>
+                            <TitleRelationshipCd/>
+                            <TitleRelationshipDesc/>
+                            <SupplementaryNameInfo/>
+                            <ProfessionalDesignationCd/>
+                            <csio:NameTypeCd>csio:14</csio:NameTypeCd>
+                        </NameInfo>
+                        <Addr>
+                            <AddrTypeCd>csio:2</AddrTypeCd>
+                            <DetailAddr>
+                                <PreDirectionCde></PreDirectionCde>
+                                <StreetName>Vikings Street</StreetName>
+                                <PostDirectionCd></PostDirectionCd>
+                                <StreetNumber>2000</StreetNumber>
+                                <UnitNumber></UnitNumber>
+                                <csio:StreetDirection></csio:StreetDirection>
+                                <csio:AddrDesignationCd></csio:AddrDesignationCd>
+                                <csio:FireNumber></csio:FireNumber>
+                                <csio:DeliveryModeCd></csio:DeliveryModeCd>
+                                <csio:DeliveryNumber></csio:DeliveryNumber>
+                                <csio:PostalInstallationTypeCd></csio:PostalInstallationTypeCd>
+                                <csio:PostalInstallationNumber></csio:PostalInstallationNumber>
+                                <csio:BldgName></csio:BldgName>
+                                <Floor></Floor>
+                                <csio:StreetNumberSuffix></csio:StreetNumberSuffix>
+                            </DetailAddr>
+                            <Addr2></Addr2>
+                            <Addr3></Addr3>
+                            <Addr4></Addr4>
+                            <City>Minneappolis</City>
+                            <StateProvCd></StateProvCd>
+                            <PostalCode>N2E 2R4</PostalCode>
+                            <CountryCd>CA</CountryCd>
+                            <Country>Canada</Country>
+                            <Latitude></Latitude>
+                            <Longitude></Longitude>
+                            <County></County>
+                            <Region></Region>
+                            <Township></Township>
+                            <LegalAddr></LegalAddr>
+                            <CountyTownCd></CountyTownCd>
+                            <csio:TownCd></csio:TownCd>
+                            <csio:AddrFormatCd></csio:AddrFormatCd>
+                        </Addr>
+                        <PreferredContact/>
+                        <Communications/>
+                        <EffectiveDt>#mccg:PYEFFDT_1#</EffectiveDt>
+                        <ItemIdInfo/>
+                    </GeneralPartyInfo>
+                    <AdditionalInterestInfo>
+                        <NatureInterestCd>csio:AD</NatureInterestCd>
+                        <InterestRank>2</InterestRank>
+                        <AccountNumberId/>
+                        <PayorInd/>
+                        <BillFrequencyCd/>
+                        <CertificateFrequencyCd/>
+                        <CertificateRequiredDt/>
+                        <CertificateIssuedDt/>
+                        <PolicyRequiredDt/>
+                        <PolicyIssuedDt/>
+                        <InterestEndDt/>
+                        <InformationalBillingInd/>
+                        <PolicyFrequencyCd/>
+                        <FinancedAmt/>
+                        <InterestPct/>
+                        <WorkCompCoverageInd/>
+                        <OptionTypeCd/>
+                        <BankInfo/>
+                        <ReasonDesc/>
+                    </AdditionalInterestInfo>
+                </AdditionalInterest>
+                <csio:CompanySpecificField/>
+            </Location>
+            <FileAttachmentInfo>
+                <AttachmentDesc>Policy Change Rating Summary</AttachmentDesc>
+                <AttachmentTypeCd>PDF</AttachmentTypeCd>
+                <AttachmentFilename>ratingsummary.pdf</AttachmentFilename>
+            </FileAttachmentInfo>
+            <FileAttachmentInfo>
+                <AttachmentDesc>Policy Change Summary</AttachmentDesc>
+                <AttachmentTypeCd>PDF</AttachmentTypeCd>
+                <AttachmentFilename>summary.pdf</AttachmentFilename>
+            </FileAttachmentInfo>
+        </HomePolicyModRq>
+    </InsuranceSvcRq>
+</ACORD>

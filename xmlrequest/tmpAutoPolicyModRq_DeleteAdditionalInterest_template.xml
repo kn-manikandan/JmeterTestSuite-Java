@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ACORD xmlns="http://www.ACORD.org/standards/PC_Surety/ACORD1/xml/" xmlns:csio="http://www.CSIO.org/standards/PC_Surety/CSIO1/xml/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ACORD.org/standards/PC_Surety/ACORD1/xml/
+./ACORD-ca-v1-25-1-yescode.xsd">
+    <SignonRq>
+        <SignonPswd>
+            <CustId>
+                <SPName>brovada.com</SPName>
+                <CustLoginId>35brokAB</CustLoginId>
+            </CustId>
+            <CustPswd>
+                <EncryptionTypeCd>NONE</EncryptionTypeCd>
+            </CustPswd>
+        </SignonPswd>
+        <ClientDt>2015-03-31</ClientDt>
+        <CustLangPref>EN</CustLangPref>
+        <ClientApp>
+            <Org>Zycomp Systems Ltd</Org>
+            <Name>Power Broker</Name>
+            <Version>4.30</Version>
+        </ClientApp>
+        <ProxyClient>
+            <Org>Zycomp Systems Ltd</Org>
+            <Name>Power Broker</Name>
+            <Version>4.30</Version>
+        </ProxyClient>
+    </SignonRq>
+    <InsuranceSvcRq>
+        <RqUID>00000000-0000-0000-0000-000000012345</RqUID>
+        <PersAutoPolicyModRq>
+            <RqUID>00000000-0000-0000-0000-000000012345</RqUID>
+            <TransactionRequestDt>2015-05-01T14:30:47</TransactionRequestDt>
+            <TransactionEffectiveDt>2015-04-29T00:00:01</TransactionEffectiveDt>
+            <CurCd id="ID003033" CodeListRef="ID003033">CAD</CurCd>
+            <BroadLOBCd>PERS</BroadLOBCd>
+            <ACORDStandardVersionCd>1126</ACORDStandardVersionCd>
+            <ItemIdInfo>
+                <OtherIdentifier>
+                    <OtherIdTypeCd>mccg:PolicyChecksum</OtherIdTypeCd>
+                    <OtherId>b839396771edabef0509a01ec6398e2d</OtherId>
+                </OtherIdentifier>
+            </ItemIdInfo>
+            <ModInfo IdRef="C1">
+                <ActionCd>D</ActionCd>
+                <PreviousValue/>
+                <RefNameCd/>
+                <ChangeDesc>Jmeter Automated Test mark</ChangeDesc>
+            </ModInfo>
+            <InsuredOrPrincipal>
+                <ItemIdInfo>
+                    <AgencyId>1928759</AgencyId>
+                </ItemIdInfo>
+            </InsuredOrPrincipal>
+            <PersPolicy>
+                <PolicyNumber>15428A01</PolicyNumber>
+                <PolicyVersion>C-4</PolicyVersion>
+                <CompanyProductCd>Property</CompanyProductCd>
+                <BroadLOBCd>PERS</BroadLOBCd>
+                <LOBCd>HABL</LOBCd>
+                <LOBSubCd>HOME</LOBSubCd>
+                <ContractTerm>
+                    <EffectiveDt>2007-01-07 00:00:00</EffectiveDt><<<<
+                    <ExpirationDt>2008-01-07</ExpirationDt>
+                    <StartTime>00:00:01</StartTime>
+                    <EndTime>23:59:59</EndTime>
+                </ContractTerm>
+                <csio:TotalEstimatedAmt>
+                    <Amt>177.10</Amt>
+                    <CurCd>CAD</CurCd>
+                </csio:TotalEstimatedAmt>
+            </PersPolicy>
+            <PersAutoLineBusiness>
+                <LOBCd>csio:AUTO</LOBCd>
+                <PersVeh>
+                    <csio:PCVEH>
+                    <ItemIdInfo>
+                        <AgencyId/>
+                        <InsurerId/>
+                        <SystemId/>
+                        <OtherIdentifier/>
+                        <csio:FixedId>#mccg:LOC_FIXEDID_1#</csio:FixedId>
+                        <!-- IBS item == CSIO location -->
+                    </ItemIdInfo>
+                    <Manufacturer>Toyota</Manufacturer>
+                    <Model>Sienna</Model>
+                    <ModelYear>2008</ModelYear>
+                    <VehIdentificationNumber>1B4YEM9P4KP186543</VehIdentificationNumber>
+                    <AdditionalInterest id="C1">
+                        <ItemIdInfo>
+                            <AgencyId/>
+                            <InsurerId/>
+                            <SystemId/>
+                            <OtherIdentifier/>
+                            <csio:FixedId>#mccg:IP_FIXEDID_1#</csio:FixedId>
+                        </ItemIdInfo>
+                        <GeneralPartyInfo>
+                            <NameInfo>
+                                <!--<CommlName>
+                                    <CommercialName>#mccg:IP_NAME#</CommercialName>
+                                    <IndexName>#mccg:IP_NAME#</IndexName>
+                                    <SupplementaryNameInfo/>
+                                </CommlName>  -->
+                                <!--<FamilyName>-->
+                                <!--<TitlePrefix>Mr.</TitlePrefix>-->
+                                <!--<FamilyNames>John and Mary</FamilyNames>-->
+                                <!--<Surname>Smith</Surname>-->
+                                <!--</FamilyName>-->
+                                <PersonName>
+                                    <Surname>Jones</Surname>
+                                    <GivenName>Billybob</GivenName>
+                                    <TitlePrefix>Mr.</TitlePrefix>
+                                </PersonName>
+                                <LegalEntityCd/>
+                                <TaxIdentity/>
+                                <NonTaxIdentity/>
+                                <TitleRelationshipCd/>
+                                <TitleRelationshipDesc/>
+                                <SupplementaryNameInfo/>
+                                <ProfessionalDesignationCd/>
+                                <csio:NameTypeCd>csio:14</csio:NameTypeCd>
+                            </NameInfo>
+                            <Addr>
+                                <AddrTypeCd>csio:2</AddrTypeCd>
+                                <DetailAddr>
+                                    <PreDirectionCde></PreDirectionCde>
+                                    <StreetName>Main Street</StreetName>
+                                    <PostDirectionCd></PostDirectionCd>
+                                    <StreetNumber>123</StreetNumber>
+                                    <UnitNumber>1</UnitNumber>
+                                    <csio:StreetDirection></csio:StreetDirection>
+                                    <csio:AddrDesignationCd></csio:AddrDesignationCd>
+                                    <csio:FireNumber></csio:FireNumber>
+                                    <csio:DeliveryModeCd></csio:DeliveryModeCd>
+                                    <csio:DeliveryNumber></csio:DeliveryNumber>
+                                    <csio:PostalInstallationTypeCd></csio:PostalInstallationTypeCd>
+                                    <csio:PostalInstallationNumber></csio:PostalInstallationNumber>
+                                    <csio:BldgName></csio:BldgName>
+                                    <Floor></Floor>
+                                    <csio:StreetNumberSuffix></csio:StreetNumberSuffix>
+                                </DetailAddr>
+                                <Addr2></Addr2>
+                                <Addr3></Addr3>
+                                <Addr4></Addr4>
+                                <City></City>
+                                <StateProvCd></StateProvCd>
+                                <PostalCode>N2E 2R4</PostalCode>
+                                <CountryCd>CA</CountryCd>
+                                <Country>Canada</Country>
+                                <Latitude>123.06</Latitude>
+                                <Longitude>111.11</Longitude>
+                                <County></County>
+                                <Region></Region>
+                                <Township></Township>
+                                <LegalAddr></LegalAddr>
+                                <CountyTownCd></CountyTownCd>
+                                <csio:TownCd></csio:TownCd>
+                                <csio:AddrFormatCd></csio:AddrFormatCd>
+                            </Addr>
+                            <PreferredContact/>
+                            <Communications/>
+                            <EffectiveDt>2007-01-07</EffectiveDt>
+                            <ItemIdInfo/>
+                        </GeneralPartyInfo>
+                        <AdditionalInterestInfo>
+                            <NatureInterestCd>csio:AD</NatureInterestCd>
+                            <InterestRank>1</InterestRank>
+                            <AccountNumberId/>
+                            <PayorInd/>
+                            <BillFrequencyCd/>
+                            <CertificateFrequencyCd/>
+                            <CertificateRequiredDt/>
+                            <CertificateIssuedDt/>
+                            <PolicyRequiredDt/>
+                            <PolicyIssuedDt/>
+                            <InterestEndDt/>
+                            <InformationalBillingInd/>
+                            <PolicyFrequencyCd/>
+                            <FinancedAmt/>
+                            <InterestPct/>
+                            <WorkCompCoverageInd/>
+                            <OptionTypeCd/>
+                            <BankInfo/>
+                            <ReasonDesc/>
+                        </AdditionalInterestInfo>
+                    </AdditionalInterest>
+                    <PurchasePriceAmt>
+                        <Amt>35000</Amt>
+                        <CurCd>CAD</CurCd>
+                    </PurchasePriceAmt>
+                    <Coverage>
+                        <CoverageCd>csio:TPBI</CoverageCd>
+                        <Limit>
+                            <FormatCurrencyAmt>
+                                <Amt>1000000</Amt>
+                                <CurCd>CAD</CurCd>
+                            </FormatCurrencyAmt>
+                        </Limit>
+                        <CurrentTermAmt>
+                            <Amt>1200</Amt>
+                            <CurCd>CAD</CurCd>
+                        </CurrentTermAmt>
+                    </Coverage>
+                    </csio:PCVEH>
+                </PersVeh>
+            </PersAutoLineBusiness>
+            <FileAttachmentInfo>
+                <AttachmentDesc>Policy Change Rating Summary</AttachmentDesc>
+                <AttachmentTypeCd>PDF</AttachmentTypeCd>
+                <AttachmentFilename>ratingsummary.pdf</AttachmentFilename>
+            </FileAttachmentInfo>
+            <FileAttachmentInfo>
+                <AttachmentDesc>Policy Change Summary</AttachmentDesc>
+                <AttachmentTypeCd>PDF</AttachmentTypeCd>
+                <AttachmentFilename>summary.pdf</AttachmentFilename>
+            </FileAttachmentInfo>
+        </PersAutoPolicyModRq>
+    </InsuranceSvcRq>
+</ACORD>
